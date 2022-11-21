@@ -11,9 +11,13 @@
     width: 40px;
     height: 6px;
     border-radius: 3px;
-    background-color: rgba(141, 155, 215, 0.2);
+    background-color: var(--tg-theme-secondary-bg-color);
+}
+
+.StepNavigator__stage.current {
+    background-color: var(--tg-theme-button-color);
 }
 
 .StepNavigator__stage.passed {
-    background-color: var(--tg-theme-button-text-color);
+    background-color: var(--tg-theme-text-color);
 }
