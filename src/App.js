@@ -1,21 +1,40 @@
 import { useEffect } from 'react';
+import { RecoilRoot } from "recoil";
 
 import './App.css';
+import StageNavigator from './components/StageNavigator/StageNavigator';
 import { useTelegram } from './hooks/useTelegram';
+import { useStageData, useSetStage } from './state/stageState';
 
 function App() {
-  const { onToggleButton, tg } = useTelegram();
+  const { tg } = useTelegram();
 
   useEffect(() => {
     tg.ready();
   }, [tg])
 
   return (
-    <div className="App">
-      telegram-bot
-      <button onClick={onToggleButton}>Close</button>
+    <RecoilRoot>
+      <div className="container">
+        <StageNavigator />
+        telegram-bot
+        <NextButton />
     </div>
+    </RecoilRoot>
   );
+}
+
+const NextButton = () => {
+  const stage = useStageData();
+  const setStage = useSetStage();
+
+  const nextStage = () => {
+    setStage(stage + 1)
+  }
+
+  return (
+    <button onClick={nextStage}>nextStage</button>
+  )
 }
 
 export default App;
