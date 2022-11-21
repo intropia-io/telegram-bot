@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { useTelegram } from '../../../hooks/useTelegram';
+import { useStepData, useSetStep, maxStageLength } from '../../../state/stepState';
 
 import ModalConteiner from '../../ModalContainer/ModalContainer';
+
+import { useTelegram } from '../../../hooks/useTelegram';
 
 const Step1 = () => {
 
@@ -12,26 +14,26 @@ const Step1 = () => {
     const setStage = useSetStep();
   
     const nextStage = useCallback(() => {
-      if (stage < 6) {
+      if (stage < maxStageLength) {
         setStage(stage + 1)
-      }}, [stage]);
+      }}, [stage, setStage]);
 
     useEffect(() => {
         tg.MainButton.setParams({
             text: "NEXT"
         })
-    }, [])
+    }, [tg.MainButton])
 
     useEffect(() => {
         tg.MainButton.show();
-    }, [tg])
+    }, [tg.MainButton])
 
     useEffect(() => {
         tg.WebApp.onEvent('mainButtonClicked', nextStage)
         return () => {
             tg.WebApp.offEvent('mainButtonClicked', nextStage)
         }
-    }, [])
+    }, [nextStage, tg.WebApp])
 
     return (
         <ModalConteiner>
