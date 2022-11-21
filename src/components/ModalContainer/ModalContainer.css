@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-hint-color);
     overflow: hidden;
 }
 
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    background-color: var(--tg-theme-hint-color);
+    background-color: var(--tg-theme-secondary-bg-color);
     margin-bottom: 1px;
     font-weight: 500;
     font-size: 16px;

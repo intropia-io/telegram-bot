@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 
 import { useStepData, useSetStep, maxStageLength } from '../../../state/stepState';
 
-import ModalConteiner from '../../ModalContainer/ModalContainer';
+import ModalContainer from '../../ModalContainer/ModalContainer';
 
 import { useTelegram } from '../../../hooks/useTelegram';
 
@@ -36,7 +36,7 @@ const Step1 = () => {
     }, [nextStage, tg])
 
     return (
-        <ModalConteiner>
+        <ModalContainer>
             <div>
                 <p>
                     Hey:) I’m Spike, tr3butor assistant.
@@ -48,7 +48,7 @@ const Step1 = () => {
                     I’ll help you to customize web3 opportunity feed
                 </p>
             </div>
-        </ModalConteiner>
+        </ModalContainer>
     );
 };
 
