@@ -1,15 +1,14 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { useStepData, useSetStep, maxStageLength } from '../../../state/stepState';
 
-import ModalContainer from '../../ModalContainer/ModalContainer';
+import ModalConteiner from '../../ModalContainer/ModalContainer';
 
-// import { useTelegram } from '../../../hooks/useTelegram';
-import Button from '../../Button/Buttton';
+import { useTelegram } from '../../../hooks/useTelegram';
 
 const Step1 = () => {
 
-    // const { tg } = useTelegram();
+    const { tg, onToggleButton } = useTelegram();
 
     const stage = useStepData();
     const setStage = useSetStep();
@@ -19,8 +18,25 @@ const Step1 = () => {
         setStage(stage + 1)
       }}, [stage, setStage]);
 
+    useEffect(() => {
+        tg.MainButton.setParams({
+            text: "NEXT"
+        })
+    }, [tg.MainButton])
+
+    useEffect(() => {
+        onToggleButton()
+    }, [onToggleButton])
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', nextStage)
+        return () => {
+            tg.offEvent('mainButtonClicked', nextStage)
+        }
+    }, [nextStage, tg])
+
     return (
-        <ModalContainer>
+        <ModalConteiner>
             <div>
                 <p>
                     Hey:) I’m Spike, tr3butor assistant.
@@ -32,9 +48,7 @@ const Step1 = () => {
                     I’ll help you to customize web3 opportunity feed
                 </p>
             </div>
-
-            <Button onClick={nextStage}>Next</Button>
-        </ModalContainer>
+        </ModalConteiner>
     );
 };
 
