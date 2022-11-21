@@ -23,19 +23,4 @@ function App() {
   );
 }
 
-const NextButton = () => {
-  const stage = useStepData();
-  const setStage = useSetStep();
-
-  const nextStage = () => {
-    if (stage < maxStageLength) {
-      setStage(stage + 1)
-    }
-  }
-
-  return (
-    <button onClick={nextStage}>nextStage</button>
-  )
-}
-
 export default App;
