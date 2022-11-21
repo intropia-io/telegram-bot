@@ -8,7 +8,7 @@ import { useTelegram } from '../../../hooks/useTelegram';
 
 const Step1 = () => {
 
-    const { tg } = useTelegram();
+    const { tg, onToggleButton } = useTelegram();
 
     const stage = useStepData();
     const setStage = useSetStep();
@@ -25,15 +25,15 @@ const Step1 = () => {
     }, [tg.MainButton])
 
     useEffect(() => {
-        tg.MainButton.show();
-    }, [tg.MainButton])
+        onToggleButton()
+    }, [onToggleButton])
 
     useEffect(() => {
-        tg.WebApp.onEvent('mainButtonClicked', nextStage)
+        tg.onEvent('mainButtonClicked', nextStage)
         return () => {
-            tg.WebApp.offEvent('mainButtonClicked', nextStage)
+            tg.offEvent('mainButtonClicked', nextStage)
         }
-    }, [nextStage, tg.WebApp])
+    }, [nextStage, tg])
 
     return (
         <ModalConteiner>
