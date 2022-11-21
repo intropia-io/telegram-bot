@@ -9,6 +9,7 @@
 
 #blob {
     position: relative;
+    margin: 40px;
 }
 
 #blob canvas {
