@@ -12,7 +12,7 @@ const StepNavigator = (props) => {
     return (
         <div className={'StepNavigator ' + props.className}>
             {stagesArray.map((el, index) =>
-              <div key={index} className={`StepNavigator__stage ${index + 1 <= stage && 'passed'}`}></div>
+              <div key={index} className={`StepNavigator__stage ${index + 1 <= stage && 'passed'} ${index + 1 === stage && 'current'}`}></div>
             )}
             
         </div>
