@@ -4,7 +4,6 @@
     gap: 10px;
     align-items: center;
     justify-content: flex-start;
-    background: var(--tg-theme-button-color);
     color: var(--tg-theme-button-text-color);
 }
 
