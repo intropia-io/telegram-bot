@@ -15,7 +15,7 @@ const Step1 = () => {
 
     useEffect(() => {
         tg.MainButton.show();
-    }, [])
+    }, [tg])
 
     return (
         <ModalConteiner>
