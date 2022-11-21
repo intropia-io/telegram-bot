@@ -10,7 +10,7 @@
 
 #blob {
     position: relative;
-    margin: 40px;
+    margin-top: 40px;
 }
 
 #blob canvas {
@@ -25,6 +25,9 @@
     padding: 20px 0;
     background-color: var(--tg-theme-hint-color);
     margin-bottom: 1px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 @media(max-width: 1200px) {
