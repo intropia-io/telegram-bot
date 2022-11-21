@@ -11,7 +11,7 @@
     width: 40px;
     height: 6px;
     border-radius: 3px;
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-hint-color);
 }
 
 .StepNavigator__stage.passed {
