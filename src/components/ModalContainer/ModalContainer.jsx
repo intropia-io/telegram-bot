@@ -80,13 +80,15 @@ const ModalContainer = () => {
               <canvas id='blobCanvas'></canvas>
             </div>
 
-            <div className='text_content'>
-              Hey:) I’m Spike, tr3butor assistant.
-            </div>
+            <ul>
+                <li>
+                    Hey:) I’m Spike, tr3butor assistant.
+                </li>
 
-            <div className='text_content'>
-               I’ll help you to customize web3 opportunity feed
-            </div>
+                <li className='text_content'>
+                    I’ll help you to customize web3 opportunity feed
+                </li>
+            </ul>
         </div>
     );
 };

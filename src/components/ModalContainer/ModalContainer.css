@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background-color: var(--tg-theme-secondary-bg-color);
+    background-color: var(--tg-theme-hint-color);
     overflow: hidden;
 }
 
@@ -18,12 +18,13 @@
     margin-top: -7%;
 }
 
-.text_content {
+.modalContainer ul li {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px 0;
-    background-color: var(--tg-theme-hint-color);
+    padding: 20px;
+    background-color: var(--tg-theme-secondary-bg-color);
+
     margin-bottom: 1px;
     font-weight: 500;
     font-size: 16px;
