@@ -20,5 +20,5 @@
 }
 
 .StepNavigator__stage.passed.current {
-    color: var(--tg-theme-text-color);
+    color: var(--tg-theme-text-color) !important;
 }
