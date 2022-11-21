@@ -4,7 +4,7 @@ import { AmbientLight, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCam
 
 import './ModalContainer.css';
 
-const ModalContainer = () => {
+const ModalContainer = ({children}) => {
 
     useEffect(()  => {
         let canvas = document.getElementById('spikeCanvas');
@@ -81,18 +81,7 @@ const ModalContainer = () => {
             </div>
 
             <div className='text_content'>
-                <div>
-                <p>
-                    Hey:) I’m Spike, tr3butor assistant.
-                </p>
-                </div>
-                <div>
-                <p>
-                    I’ll help you to customize web3 opportunity feed
-                </p>
-                </div>
-
-              
+                {children}              
             </div>
         </div>
     );
