@@ -79,6 +79,10 @@ const ModalContainer = () => {
             <div id="blob">
               <canvas id='blobCanvas'></canvas>
             </div>
+
+            <div className='text_content'>
+              Hey:) I’m Spike, tr3butor assistant.
+            </div>
         </div>
     );
 };

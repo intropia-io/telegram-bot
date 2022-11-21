@@ -5,6 +5,7 @@
     justify-content: center;
     border-radius: 20px;
     background-color: var(--tg-theme-secondary-bg-color);
+    overflow: hidden;
 }
 
 #blob {
@@ -15,6 +16,15 @@
 #blob canvas {
     width: 200px;
     margin-top: -7%;
+}
+
+.text_content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: var(--tg-theme-hint-color);
+    margin-bottom: 1px;
 }
 
 @media(max-width: 1200px) {
