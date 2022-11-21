@@ -7,7 +7,7 @@ import './ModalContainer.css';
 const ModalContainer = () => {
 
     useEffect(()  => {
-        let canvas = document.getElementById('blobCanvas');
+        let canvas = document.getElementById('spikeCanvas');
         let renderer = new WebGLRenderer({
                 canvas: canvas,
                 context: canvas.getContext('webgl2'),
@@ -76,19 +76,24 @@ const ModalContainer = () => {
 
     return (
         <div className='modalContainer'>
-            <div id="blob">
-              <canvas id='blobCanvas'></canvas>
+            <div id="spike">
+              <canvas id='spikeCanvas'></canvas>
             </div>
 
-            <ul>
-                <li>
+            <div className='text_content'>
+                <div>
+                <p>
                     Hey:) I’m Spike, tr3butor assistant.
-                </li>
-
-                <li className='text_content'>
+                </p>
+                </div>
+                <div>
+                <p>
                     I’ll help you to customize web3 opportunity feed
-                </li>
-            </ul>
+                </p>
+                </div>
+
+              
+            </div>
         </div>
     );
 };

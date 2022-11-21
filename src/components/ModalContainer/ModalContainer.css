@@ -4,27 +4,30 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background-color: var(--tg-theme-hint-color);
+    background-color: var(--tg-theme-secondary-bg-color);
     overflow: hidden;
 }
 
-#blob {
+#spike {
     position: relative;
-    margin-top: 40px;
+    margin: 40px auto 0 auto;
 }
 
-#blob canvas {
+#spikeCanvas {
     width: 200px;
     margin-top: -7%;
 }
 
-.modalContainer ul li {
+.text_content {
+    width: 100%;
+}
+
+.text_content div {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px;
-    background-color: var(--tg-theme-secondary-bg-color);
-
+    padding: 20px 0;
+    background-color: var(--tg-theme-hint-color);
     margin-bottom: 1px;
     font-weight: 500;
     font-size: 16px;
@@ -32,14 +35,14 @@
 }
 
 @media(max-width: 1200px) {
-    #blob canvas {
+    #spikeCanvas {
         margin-top: -10%;
         width: 800px
     }
 }
 
 @media(max-width: 600px) {
-    #blob canvas {
+    #spikeCanvas {
       width: 800px
     }
 }
