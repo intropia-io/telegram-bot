@@ -1,6 +1,8 @@
 import React from 'react';
-import './StageNavigator.css';
+
 import { useStageData, maxStageLength } from '../../state/stageState';
+
+import './StageNavigator.css';
 
 const StageNavigator = (props) => {
     const stage = useStageData();
