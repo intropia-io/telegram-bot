@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { RecoilRoot } from "recoil";
 
 import './App.css';
-import ModalContainer from './components/ModalContainer/ModalContainer';
-import StageNavigator from './components/StageNavigator/StageNavigator';
+import StepRouter from './components/Steps/StepRouter';
 import { useTelegram } from './hooks/useTelegram';
-import { useStageData, useSetStage, maxStageLength } from './state/stageState';
+import { useStepData, useSetStep, maxStageLength } from './state/stepState';
 
 function App() {
   const { tg } = useTelegram();
@@ -17,8 +16,7 @@ function App() {
   return (
     <RecoilRoot>
       <div className="container">
-        <StageNavigator />
-        <ModalContainer />
+        <StepRouter />
         <NextButton />
     </div>
     </RecoilRoot>
@@ -26,8 +24,8 @@ function App() {
 }
 
 const NextButton = () => {
-  const stage = useStageData();
-  const setStage = useSetStage();
+  const stage = useStepData();
+  const setStage = useSetStep();
 
   const nextStage = () => {
     if (stage < maxStageLength) {
