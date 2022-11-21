@@ -83,6 +83,10 @@ const ModalContainer = () => {
             <div className='text_content'>
               Hey:) I’m Spike, tr3butor assistant.
             </div>
+
+            <div className='text_content'>
+               I’ll help you to customize web3 opportunity feed
+            </div>
         </div>
     );
 };
