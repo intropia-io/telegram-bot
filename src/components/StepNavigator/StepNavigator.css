@@ -14,10 +14,10 @@
     background-color: var(--tg-theme-secondary-bg-color);
 }
 
-.StepNavigator__stage.current {
-    background-color: var(--tg-theme-button-color);
-}
-
 .StepNavigator__stage.passed {
     background-color: var(--tg-theme-text-color);
+}
+
+.StepNavigator__stage.passed.current {
+    background-color: var(--tg-theme-button-color);
 }
