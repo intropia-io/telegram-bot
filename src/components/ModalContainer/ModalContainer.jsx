@@ -4,7 +4,7 @@ import { AmbientLight, DirectionalLight, Mesh, MeshPhongMaterial, PerspectiveCam
 
 import './ModalContainer.css';
 
-const ModalContainer = ({children}) => {
+const ModalContainer = ({button, children}) => {
 
     useEffect(()  => {
         let canvas = document.getElementById('spikeCanvas');

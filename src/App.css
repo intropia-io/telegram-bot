@@ -7,7 +7,7 @@
 }
 
 body {
-  background: #141829;
+  position: relative;
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
   font-family: 'Roboto';
