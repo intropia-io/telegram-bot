@@ -7,11 +7,11 @@
 
 #spike__container {
     position: relative;
-    width: 200px;
+    width: 100%;
     height: 200px;
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 40px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: var(--tg-theme-hint-color);
@@ -43,4 +43,17 @@
 .text_content div:nth-last-child(1) {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+@media(max-width: 1200px) {
+    #spikeCanvas {
+        margin-top: -10%;
+        width: 800px
+    }
+}
+
+@media(max-width: 600px) {
+    #spikeCanvas {
+      width: 800px
+    }
 }

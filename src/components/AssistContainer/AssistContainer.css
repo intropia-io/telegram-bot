@@ -1,0 +1,33 @@
+.assistContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    justify-content: flex-start;
+    gap: 10px;
+    background: #060A1B;
+    border-radius: 10px;
+}
+
+#assistSpike__container {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: #060A1B;}
+
+#spikeCanvas {
+    width: 200px;
+    margin-top: -7%;
+}
+
+.text {
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
