@@ -29,10 +29,10 @@ const Step1 = () => {
     }, [onToggleButton])
 
     useEffect(() => {
-        tg.onEvent('mainButtonClicked', nextStage)
-        return () => {
-            tg.offEvent('mainButtonClicked', nextStage)
-        }
+        const timeout = setTimeout(() => {
+            tg.onEvent('mainButtonClicked', nextStage)
+        }, 2000)
+        return () => clearTimeout(timeout);
     }, [nextStage, tg])
 
     return (
