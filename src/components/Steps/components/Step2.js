@@ -39,7 +39,7 @@ const Step2 = () => {
         color: "#8D9BD7",
       });
     }
-  }, [selectedDynasty]);
+  }, [selectedDynasty, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);
