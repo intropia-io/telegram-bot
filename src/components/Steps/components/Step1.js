@@ -34,7 +34,7 @@ const Step1 = () => {
         }, 2000)
 
         return () => clearTimeout(timeout);
-    }, [tg.MainButton, setSpeechlines, onToggleButton])
+    })
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', nextStage)
