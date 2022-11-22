@@ -33,8 +33,10 @@ const Step1 = () => {
             setSpeechlines(prev => [...prev, line2])
         }, 2000)
 
-        return () => clearTimeout(timeout);
-    })
+        return () => {
+            clearTimeout(timeout)
+        };
+    }, [])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', nextStage)
