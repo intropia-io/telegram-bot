@@ -27,7 +27,8 @@ const Step1 = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
             tg.MainButton.setParams({
-                text: "NEXT"
+                text: "NEXT",
+                color: '#04BEFE'
             })
             onToggleButton()
             setSpeechlines(prev => [...prev, line2])

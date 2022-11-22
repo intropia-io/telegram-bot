@@ -15,10 +15,10 @@
 }
 
 .StepNavigator__stage.passed {
-    background-color: var(--tg-theme-button-color);
+    background-color: #8D9BD7;
 
 }
 
 .StepNavigator__stage.passed.current {
-    background-color: var(--tg-theme-text-color) !important;
+    background-color: #FFFFFF !important;
 }
