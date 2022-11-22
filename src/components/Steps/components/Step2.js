@@ -23,7 +23,7 @@ const Step2 = () => {
     useEffect(() => {
         tg.MainButton.setParams({
             text: "SKIP",
-            color: 'rgba(20, 24, 41, 0.3)'
+            color: '#8D9BD7'
         })
     })
 
