@@ -5,12 +5,13 @@
     justify-content: center;
 }
 
-#spike {
+#spike__container {
     position: relative;
-    width: 100%;
+    width: 200px;
+    height: 200px;
     display: flex;
     justify-content: center;
-    padding-top: 40px;
+    padding-top: 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: var(--tg-theme-hint-color);
@@ -31,7 +32,7 @@
     justify-content: center;
     padding: 20px;
     background-color: var(--tg-theme-secondary-bg-color);
-    margin-top: 1px;
+    border-top: 1px solid var(--tg-theme-hint-color);
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
@@ -42,17 +43,4 @@
 .text_content div:nth-last-child(1) {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-}
-
-@media(max-width: 1200px) {
-    #spikeCanvas {
-        margin-top: -10%;
-        width: 800px
-    }
-}
-
-@media(max-width: 600px) {
-    #spikeCanvas {
-      width: 800px
-    }
 }
