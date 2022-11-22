@@ -5,6 +5,7 @@ import { useStepData, useSetStep, maxStageLength } from '../../../state/stepStat
 import AssistContainer from '../../AssistContainer/AssistContainer';
 
 import { useTelegram } from '../../../hooks/useTelegram';
+import Checkbox from '../../Checkbox/Checkbox';
 
 const Step2 = () => {
     const { tg } = useTelegram();
@@ -40,6 +41,8 @@ const Step2 = () => {
             We use dynasty instead typical categories.
             Let’s review who are you (^--^)
         </AssistContainer>
+
+        <Checkbox label="development" />
     </>
     );
 };

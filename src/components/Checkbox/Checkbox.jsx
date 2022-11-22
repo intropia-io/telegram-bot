@@ -1,11 +1,14 @@
 import React from 'react';
 import './Checkbox.css';
 
-const Checkbox = ({label, hint, ...rest}) => {
+const Checkbox = ({label, hint, checked, ...rest}) => {
+    const defaultChecked = checked ? checked : false;
+    const [isChecked, setIsChecked] = useState(defaultChecked);
+
     return (
-        <div className="checkbox-wrapper">
+        <div onClick={() => setIsChecked((prev) => !prev)} className="checkbox-wrapper">
         <label>
-          <input {...rest} type="checkbox" />
+          <input {...rest} type="checkbox" checked={isChecked} />
           <span>{label}</span>
         </label>
       </div>
