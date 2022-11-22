@@ -22,7 +22,6 @@ const Step2 = () => {
   const setStage = useSetStep();
 
   const nextStage = useCallback(() => {
-    console.log(setSelectedDynasty);
     if (stage < maxStageLength) {
       setStage(stage + 1);
     }
@@ -40,7 +39,7 @@ const Step2 = () => {
         color: "#8D9BD7",
       });
     }
-  }, [selectedDynasty, tg.MainButton]);
+  }, [selectedDynasty]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);
