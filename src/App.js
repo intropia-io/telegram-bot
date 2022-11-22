@@ -10,8 +10,6 @@ function App() {
 
   useEffect(() => {
     tg.ready();
-    tg.setHeaderColor('#141829');
-    tg.setBackgroundColor('#141829');
   }, [tg])
 
   return (
