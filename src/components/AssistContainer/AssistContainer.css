@@ -15,14 +15,13 @@
     height: 70px;
     display: flex;
     justify-content: center;
-    padding-top: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    background: #060A1B;}
+    background: #060A1B;
+}
 
 #assistSpikeCanvas {
-    width: 70px;
-    margin-top: -7%;
+    margin-top: -35%;
+    width: 235px !important;
+    height: 120px !important;
 }
 
 .text {
