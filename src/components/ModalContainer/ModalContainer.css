@@ -36,6 +36,7 @@
     font-size: 16px;
     line-height: 20px;
     text-align: center;
+    transition: 0.3s;
 }
 
 .text_content div:nth-last-child(1) {
