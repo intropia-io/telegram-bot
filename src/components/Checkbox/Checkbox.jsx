@@ -1,10 +1,15 @@
 import React from 'react';
-import './Button.css';
+import './Checkbox.css';
 
-const Button = (props) => {
+const Checkbox = ({label, hint, ...rest}) => {
     return (
-        <button {...props} className={'button ' + props.className} />
+        <div className="checkbox-wrapper">
+        <label>
+          <input {...rest} type="checkbox" />
+          <span>{label}</span>
+        </label>
+      </div>
     );
 };
 
-export default Button;
+export default Checkbox;
