@@ -2,7 +2,7 @@ import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
 export const maxStageLength = 6;
 
-const initialStage = 1;
+const initialStage = 2;
 
 export const stepStage = atom({
   key: "stepStage",

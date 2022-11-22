@@ -1,31 +1,31 @@
 .assistContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
-    justify-content: flex-start;
-    gap: 10px;
-    background: var(--tg-theme-secondary-bg-color);;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  justify-content: flex-start;
+  gap: 10px;
+  background: #060a1b;
+  border-radius: 10px;
 }
 
 #assistSpike__container {
-    position: relative;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
 }
 
 #assistSpikeCanvas {
-    margin-top: -35%;
-    width: 235px !important;
-    height: 120px !important;
+  margin-top: -35%;
+  width: 235px !important;
+  height: 120px !important;
 }
 
 .text {
-    width: 100%;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
 }

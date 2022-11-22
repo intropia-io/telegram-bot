@@ -1,24 +1,23 @@
 .StepNavigator {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-    color: var(--tg-theme-button-text-color);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--tg-theme-button-text-color);
 }
 
 .StepNavigator__stage {
-    width: 40px;
-    height: 6px;
-    border-radius: 3px;
-    background-color: rgba(141, 155, 215, 0.2);
+  width: 40px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: rgba(141, 155, 215, 0.2);
 }
 
 .StepNavigator__stage.passed {
-    background-color: #8D9BD7;
-
+  background-color: #8d9bd7;
 }
 
 .StepNavigator__stage.passed.current {
-    background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
 }

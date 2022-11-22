@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap");
 
 * {
   margin: 0;
@@ -9,10 +9,10 @@
 body {
   position: relative;
   background: #141829;
-  color: #FFFFFF;
+  color: #ffffff;
   /* background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color); */
-  font-family: 'Roboto';
+  font-family: "Roboto";
 }
 
 .container {
@@ -20,6 +20,6 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-    gap: 20px;
+  gap: 20px;
   padding: 0 20px;
 }

@@ -1,25 +1,22 @@
-import React, { useEffect } from 'react';
-import animateSpike from '../../helper/animateSpike';
+import React, { useEffect } from "react";
+import animateSpike from "../../helper/animateSpike";
 
-import './ModalContainer.css';
+import "./ModalContainer.css";
 
 const ModalContainer = ({ children }) => {
+  useEffect(() => {
+    animateSpike("spikeCanvas");
+  }, []);
 
-    useEffect(()  => {
-        animateSpike('spikeCanvas') 
-    }, [])
+  return (
+    <div className="modalContainer">
+      <div id="spike__container">
+        <canvas id="spikeCanvas"></canvas>
+      </div>
 
-    return (
-        <div className='modalContainer'>
-            <div id="spike__container">
-              <canvas id='spikeCanvas'></canvas>
-            </div>
-
-            <div className='text_content'>
-                {children}              
-            </div>
-        </div>
-    );
+      <div className="text_content">{children}</div>
+    </div>
+  );
 };
 
 export default ModalContainer;

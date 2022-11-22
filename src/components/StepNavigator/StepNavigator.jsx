@@ -1,26 +1,27 @@
-import React from 'react';
+import React from "react";
 
-import { useStepData, maxStageLength } from '../../state/stepState';
+import { useStepData, maxStageLength } from "../../state/stepState";
 
-import './StepNavigator.css';
+import "./StepNavigator.css";
 
 const StepNavigator = (props) => {
-    const stage = useStepData();
+  const stage = useStepData();
 
-    const stagesArray = Array.from(Array(maxStageLength));
+  const stagesArray = Array.from(Array(maxStageLength));
 
-    return (
-        <div className={'StepNavigator ' + props.className}>
-            {stagesArray.map((el, index) =>
-              <div key={index} 
-              className={
-                `StepNavigator__stage ${index + 1 <= stage ? 'passed' : ''} 
-                ${index + 1 === stage ? 'current' : ''}`} 
-              />
-            )}
-            
-        </div>
-    );
+  return (
+    <div className={"StepNavigator " + props.className}>
+      {stagesArray.map((el, index) => (
+        <div
+          key={index}
+          className={`StepNavigator__stage ${
+            index + 1 <= stage ? "passed" : ""
+          } 
+                ${index + 1 === stage ? "current" : ""}`}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default StepNavigator;
