@@ -36,6 +36,7 @@ const Step1 = () => {
         return () => {
             clearTimeout(timeout)
         };
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
