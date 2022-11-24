@@ -40,7 +40,7 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
-=    tg.setBackgroundColor('#141829');
+    tg.setBackgroundColor('#141829');
     tg.setHeaderColor('secondary_bg_color')
   }, [tg])
 
