@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useSetForm, useFormData } from "state/formState";
+
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 
@@ -14,24 +16,28 @@ import marketingBadge from "assets/svg/marketingBadge.svg";
 import artistBadge from "assets/svg/artistBadge.svg";
 
 const Step2 = () => {
-  const [selectedDynasty, setSelectedDynasty] = useState([]);
+  const formData = useFormData();
+  const setForm = useSetForm();
+
+  const [selectedDynasty, setSelectedDynasty] = useState(formData.dynasty || []);
 
   const { tg } = useTelegram();
 
-  const stage = useStepData();
-  const setStage = useSetStep();
+  const step = useStepData();
+  const setStep = useSetStep();
 
-  const nextStage = useCallback(() => {
-    if (stage < maxStepLength) {
-      setStage(stage + 1);
+  const nextStep = useCallback(() => {
+    if (step < maxStepLength) {
+      setForm(prev => ({...prev, dynasty: selectedDynasty}));
+      setStep(step + 1);
     }
-  }, [stage, setStage]);
+  }, [step, setStep, selectedDynasty, setForm]);
 
-  const prevStage = useCallback(() => {
-    if (stage > 1) {
-      setStage(stage - 1);
+  const prevStep = useCallback(() => {
+    if (step > 1) {
+      setStep(step - 1);
     }
-  }, [stage, setStage]);
+  }, [step, setStep]);
 
   useEffect(() => {
     if (selectedDynasty.length > 0) {
@@ -52,13 +58,13 @@ const Step2 = () => {
   }, [tg]);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", nextStage);
-    tg.onEvent("backButtonClicked", prevStage);
+    tg.onEvent("mainButtonClicked", nextStep);
+    tg.onEvent("backButtonClicked", prevStep);
     return () => {
-      tg.offEvent("mainButtonClicked", nextStage);
-      tg.offEvent("backButtonClicked", prevStage);
+      tg.offEvent("mainButtonClicked", nextStep);
+      tg.offEvent("backButtonClicked", prevStep);
     };
-  }, [nextStage, prevStage, tg]);
+  }, [nextStep, prevStep, tg]);
 
   const handleChange = useCallback(
     (value) => {
@@ -115,6 +121,7 @@ const Step2 = () => {
           icon={dynasty.icon}
           label={dynasty.name}
           hint={dynasty.hint}
+          checked={selectedDynasty.includes(dynasty.name)}
           onChange={(value) => {
             handleChange(value);
           }}

@@ -14,14 +14,14 @@ const Step1 = () => {
 
   const { tg } = useTelegram();
 
-  const stage = useStepData();
-  const setStage = useSetStep();
+  const step = useStepData();
+  const setStep = useSetStep();
 
-  const nextStage = useCallback(() => {
-    if (stage < maxStepLength) {
-      setStage(stage + 1);
+  const nextStep = useCallback(() => {
+    if (step < maxStepLength) {
+      setStep(step + 1);
     }
-  }, [stage, setStage]);
+  }, [step, setStep]);
 
   useEffect(() => {
     tg.MainButton.hide();
@@ -50,11 +50,11 @@ const Step1 = () => {
   }, [tg]);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", nextStage);
+    tg.onEvent("mainButtonClicked", nextStep);
     return () => {
-      tg.offEvent("mainButtonClicked", nextStage);
+      tg.offEvent("mainButtonClicked", nextStep);
     };
-  }, [nextStage, tg]);
+  }, [nextStep, tg]);
 
   return (
     <ModalContainer>

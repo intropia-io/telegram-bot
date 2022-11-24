@@ -12,20 +12,20 @@ const Step5 = () => {
 
   const { tg } = useTelegram();
 
-  const stage = useStepData();
-  const setStage = useSetStep();
+  const step = useStepData();
+  const setStep = useSetStep();
 
-  const nextStage = useCallback(() => {
-    if (stage < maxStepLength) {
-      setStage(stage + 1);
+  const nextStep = useCallback(() => {
+    if (step < maxStepLength) {
+      setStep(step + 1);
     }
-  }, [stage, setStage]);
+  }, [step, setStep]);
 
-  const prevStage = useCallback(() => {
-    if (stage > 1) {
-      setStage(stage - 1);
+  const prevStep = useCallback(() => {
+    if (step > 1) {
+      setStep(step - 1);
     }
-  }, [stage, setStage]);
+  }, [step, setStep]);
 
   useEffect(() => {
     tg.MainButton.setParams({
@@ -35,13 +35,13 @@ const Step5 = () => {
   }, [tg]);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", nextStage);
-    tg.onEvent("backButtonClicked", prevStage);
+    tg.onEvent("mainButtonClicked", nextStep);
+    tg.onEvent("backButtonClicked", prevStep);
     return () => {
-      tg.offEvent("mainButtonClicked", nextStage);
-      tg.offEvent("backButtonClicked", prevStage);
+      tg.offEvent("mainButtonClicked", nextStep);
+      tg.offEvent("backButtonClicked", prevStep);
     };
-  }, [nextStage, prevStage, tg]);
+  }, [nextStep, prevStep, tg]);
 
   return (
     <>

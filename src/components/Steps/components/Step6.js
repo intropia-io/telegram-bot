@@ -21,20 +21,20 @@ const Step6 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
 
-  const stage = useStepData();
-  const setStage = useSetStep();
+  const step = useStepData();
+  const setStep = useSetStep();
 
   const finish = useCallback(() => {
-    setForm(prev => [prev, ...{updateFrequency}])
+    setForm(prev => ({...prev, updateFrequency: updateFrequency}));
     console.log(formData)
     // tg.close();
   }, [formData, setForm, updateFrequency]);
 
-  const prevStage = useCallback(() => {
-    if (stage > 1) {
-      setStage(stage - 1);
+  const prevStep = useCallback(() => {
+    if (step > 1) {
+      setStep(step - 1);
     }
-  }, [stage, setStage]);
+  }, [step, setStep]);
 
   useEffect(() => {
     tg.MainButton.setParams({
@@ -46,12 +46,12 @@ const Step6 = () => {
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", finish);
-    tg.onEvent("backButtonClicked", prevStage);
+    tg.onEvent("backButtonClicked", prevStep);
     return () => {
       tg.offEvent("mainButtonClicked", finish);
-      tg.offEvent("backButtonClicked", prevStage);
+      tg.offEvent("backButtonClicked", prevStep);
     };
-  }, [prevStage, finish, tg]);
+  }, [prevStep, finish, tg]);
 
   return (
     <>
@@ -65,6 +65,8 @@ const Step6 = () => {
           <p>All done! You can change update frequency:</p>
         </div>
       </ModalContainer>
+
+      <button onClick={finish} />
 
       <div
         style={{

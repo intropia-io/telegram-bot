@@ -5,19 +5,19 @@ import { useStepData, maxStepLength } from "../../state/stepState";
 import "./StepNavigator.css";
 
 const StepNavigator = (props) => {
-  const stage = useStepData();
+  const step = useStepData();
 
-  const stagesArray = Array.from(Array(maxStepLength));
+  const stepsArray = Array.from(Array(maxStepLength));
 
   return (
     <div className={"StepNavigator " + props.className}>
-      {stagesArray.map((el, index) => (
+      {stepsArray.map((el, index) => (
         <div
           key={index}
-          className={`StepNavigator__stage ${
-            index + 1 <= stage ? "passed" : ""
+          className={`StepNavigator__step ${
+            index + 1 <= step ? "passed" : ""
           } 
-                ${index + 1 === stage ? "current" : ""}`}
+                ${index + 1 === step ? "current" : ""}`}
         />
       ))}
     </div>

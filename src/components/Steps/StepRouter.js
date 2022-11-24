@@ -11,10 +11,10 @@ import Step5 from "./components/Step5";
 import Step6 from "./components/Step6";
 
 const StepRouter = () => {
-  const stage = useStepData();
+  const step = useStepData();
 
   const stepComponent = useMemo(() => {
-    switch (stage) {
+    switch (step) {
       case 1:
         return <Step1 />;
       case 2:
@@ -28,9 +28,9 @@ const StepRouter = () => {
       case 6:
         return <Step6 />;
       default:
-        return <h2>{stage}</h2>;
+        return <h2>{step}</h2>;
     }
-  }, [stage]);
+  }, [step]);
 
   return (
     <>

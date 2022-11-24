@@ -7,17 +7,17 @@
   color: var(--tg-theme-button-text-color);
 }
 
-.StepNavigator__stage {
+.StepNavigator__step {
   width: 40px;
   height: 6px;
   border-radius: 3px;
   background-color: rgba(141, 155, 215, 0.2);
 }
 
-.StepNavigator__stage.passed {
+.StepNavigator__step.passed {
   background-color: #8d9bd7;
 }
 
-.StepNavigator__stage.passed.current {
+.StepNavigator__step.passed.current {
   background-color: #ffffff !important;
 }
