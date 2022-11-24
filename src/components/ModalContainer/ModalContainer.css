@@ -17,8 +17,7 @@
 }
 
 #spikeCanvas {
-  width: 200px;
-  bottom: 10px;
+  top: 20px;
   position: relative;
 }
 
