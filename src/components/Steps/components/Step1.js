@@ -40,13 +40,13 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
-    tg.setBackgroundColor('#141829');
-    tg.setHeaderColor('bg_color')
-  }, [tg])
+    tg.setBackgroundColor("#141829");
+    tg.setHeaderColor("bg_color");
+  }, [tg]);
 
   useEffect(() => {
     tg.BackButton.hide();
-  }, [tg])
+  }, [tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);

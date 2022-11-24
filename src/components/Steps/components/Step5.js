@@ -8,7 +8,7 @@ import Checkbox from "components/Checkbox/Checkbox";
 import { useTelegram } from "hooks/useTelegram";
 
 const Step5 = () => {
-  const [ refToggle, setRefToggle ] = useState(true);
+  const [refToggle, setRefToggle] = useState(true);
 
   const { tg } = useTelegram();
 
@@ -29,9 +29,9 @@ const Step5 = () => {
 
   useEffect(() => {
     tg.MainButton.setParams({
-        text: "NEXT",
-        color: "#04BEFE",
-      });
+      text: "NEXT",
+      color: "#04BEFE",
+    });
   }, [tg]);
 
   useEffect(() => {
@@ -52,26 +52,26 @@ const Step5 = () => {
       </AssistContainer>
 
       <Checkbox
-          checked={refToggle}
-          label='yes, reward is cool!'
-          hint='oh yeah, real cash direct to your wallet'
-          onChange={   (value) => {
-            const isChecked = value.checked;
-            // do whatever you want with isChecked value
-            !isChecked && setRefToggle(true);
-          }}
-        />
+        checked={refToggle}
+        label="yes, reward is cool!"
+        hint="oh yeah, real cash direct to your wallet"
+        onChange={(value) => {
+          const isChecked = value.checked;
+          // do whatever you want with isChecked value
+          !isChecked && setRefToggle(true);
+        }}
+      />
 
-        <Checkbox
-          checked={!refToggle}
-          label='no'
-          hint='so cute, dude'
-          onChange={   (value) => {
-            const isChecked = value.checked;
-            // do whatever you want with isChecked value
-            !isChecked && setRefToggle(false);
-          }}
-        />
+      <Checkbox
+        checked={!refToggle}
+        label="no"
+        hint="so cute, dude"
+        onChange={(value) => {
+          const isChecked = value.checked;
+          // do whatever you want with isChecked value
+          !isChecked && setRefToggle(false);
+        }}
+      />
     </>
   );
 };

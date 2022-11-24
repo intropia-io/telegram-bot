@@ -22,11 +22,11 @@ const StepRouter = () => {
       case 3:
         return <Step3 />;
       case 4:
-        return <Step4 />;    
-        case 5:
-          return <Step5 />;    
+        return <Step4 />;
+      case 5:
+        return <Step5 />;
       case 6:
-        return <Step6 />;  
+        return <Step6 />;
       default:
         return <h2>{stage}</h2>;
     }

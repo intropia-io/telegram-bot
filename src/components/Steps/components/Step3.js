@@ -75,14 +75,14 @@ const Step3 = () => {
     {
       name: "bounty",
       hint: "short description about",
-    }
+    },
   ];
 
   return (
     <>
       <AssistContainer>
-      tr3butor collects all possible oportunities. <br />
-What is your best match?
+        tr3butor collects all possible oportunities. <br />
+        What is your best match?
       </AssistContainer>
 
       {opportunitiesList.map((opportunity, index) => (

@@ -49,7 +49,7 @@ const Step2 = () => {
 
   useEffect(() => {
     tg.BackButton.show();
-  }, [tg])
+  }, [tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);
@@ -104,9 +104,8 @@ const Step2 = () => {
   return (
     <>
       <AssistContainer>
-        We use dynasty instead typical categories. <br/>
-         Let’s review who are you
-        (^--^)
+        We use dynasty instead typical categories. <br />
+        Let’s review who are you (^--^)
       </AssistContainer>
 
       {dynastyList.map((dynasty, index) => (

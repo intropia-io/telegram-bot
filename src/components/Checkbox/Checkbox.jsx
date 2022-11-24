@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./Checkbox.css";
 
-const Checkbox = ({ label, hint, checked, icon, onChange, background, ...rest }) => {
-  
+const Checkbox = ({
+  label,
+  hint,
+  checked,
+  icon,
+  onChange,
+  background,
+  ...rest
+}) => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     setIsChecked(checked);
-  }, [checked])
+  }, [checked]);
 
   return (
     <div
@@ -15,7 +22,7 @@ const Checkbox = ({ label, hint, checked, icon, onChange, background, ...rest })
         onChange({ name: rest.name, checked: isChecked });
         setIsChecked((prev) => !prev);
       }}
-      className={`checkbox-wrapper ${isChecked || background ? "checked" : ''}`}
+      className={`checkbox-wrapper ${isChecked || background ? "checked" : ""}`}
     >
       <div className="labelWithIcon">
         {icon && <img src={icon} alt={label} />}

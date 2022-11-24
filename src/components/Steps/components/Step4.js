@@ -79,15 +79,15 @@ const Step4 = () => {
     {
       name: "hackathon",
       hint: "short description about",
-    }
+    },
   ];
 
   return (
     <>
       <AssistContainer>
-      Time to be impressed!
-      <br/>
-      Use our calendar for your upskill...
+        Time to be impressed!
+        <br />
+        Use our calendar for your upskill...
       </AssistContainer>
 
       {eventsList.map((event, index) => (
