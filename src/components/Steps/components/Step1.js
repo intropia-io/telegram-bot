@@ -40,9 +40,7 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
-    tg.PopupParams.setParams({
-      text: 'Welcome'
-    })
+    tg.PopupParams.text = 'Welcome'
   }, [tg])
 
   useEffect(() => {
