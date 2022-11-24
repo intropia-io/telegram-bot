@@ -29,7 +29,7 @@ const Step6 = () => {
 
   const finish = useCallback(() => {
     console.log(formData)
-    tg.sendData(JSON.stringify(formData));
+    tg.sendData(formData);
     // tg.close();
   }, [tg, formData]);
 
