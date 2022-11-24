@@ -28,7 +28,6 @@ const Step6 = () => {
   const setStep = useSetStep();
 
   const finish = useCallback(() => {
-    setForm((prev) => ({ ...prev, updateFrequency: updateFrequency }));
     tg.sendData(JSON.stringify(formData));
     tg.close();
   }, [tg, formData, setForm, updateFrequency]);
@@ -38,6 +37,10 @@ const Step6 = () => {
       setStep(step - 1);
     }
   }, [step, setStep]);
+
+  useEffect(() => {
+    setForm((prev) => ({ ...prev, updateFrequency: updateFrequency }));
+  }, [updateFrequency, setForm])
 
   useEffect(() => {
     tg.MainButton.setParams({
