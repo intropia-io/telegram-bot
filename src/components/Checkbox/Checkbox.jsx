@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Checkbox.css";
 
-const Checkbox = ({ label, hint, checked, icon, onChange, ...rest }) => {
-  const defaultChecked = checked ? checked : false;
-  const [isChecked, setIsChecked] = useState(defaultChecked);
+const Checkbox = ({ label, hint, checked, icon, onChange, background, ...rest }) => {
+  
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked])
 
   return (
     <div
       onClick={() => {
-        setIsChecked((prev) => !prev);
         onChange({ name: rest.name, checked: isChecked });
+        setIsChecked((prev) => !prev);
       }}
-      className="checkbox-wrapper"
+      className={`checkbox-wrapper ${isChecked || background ? "checked" : ''}`}
     >
       <div className="labelWithIcon">
         {icon && <img src={icon} alt={label} />}
         <label>
-          <input {...rest} type="checkbox" checked={isChecked} readOnly />
+          <input {...rest} type="checkbox" checked={checked} readOnly />
           <span>{label}</span>
           {hint && <span className="hint">{hint}</span>}
         </label>

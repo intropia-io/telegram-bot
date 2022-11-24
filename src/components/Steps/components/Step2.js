@@ -92,7 +92,8 @@ const Step2 = () => {
   return (
     <>
       <AssistContainer>
-        We use dynasty instead typical categories. Let’s review who are you
+        We use dynasty instead typical categories. <br/>
+         Let’s review who are you
         (^--^)
       </AssistContainer>
 
