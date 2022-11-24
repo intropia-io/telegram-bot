@@ -30,12 +30,8 @@ const Step2 = () => {
   const prevStage = useCallback(() => {
     if (stage > 1) {
       setStage(stage - 1);
-      tg.MainButton.setParams({
-        text: "Next",
-        color: "#04BEFE",
-      });
     }
-  }, [stage, setStage, tg]);
+  }, [stage, setStage]);
 
   useEffect(() => {
     if (selectedDynasty.length > 0) {
