@@ -28,7 +28,7 @@ const Step6 = () => {
     setForm(prev => [prev, ...{updateFrequency}])
     console.log(formData)
     // tg.close();
-  }, [tg, formData, setForm]);
+  }, [tg, formData, setForm, updateFrequency]);
 
   const prevStage = useCallback(() => {
     if (stage > 1) {
