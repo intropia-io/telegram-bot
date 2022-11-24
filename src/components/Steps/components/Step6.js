@@ -31,7 +31,7 @@ const Step6 = () => {
     console.log(formData)
     tg.sendData(JSON.stringify(formData));
     // tg.close();
-  }, [tg, formData, setForm, updateFrequency]);
+  }, [tg, formData]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
