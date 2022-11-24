@@ -28,8 +28,9 @@ const Step6 = () => {
   const setStep = useSetStep();
 
   const finish = useCallback(() => {
+    console.log(formData)
     tg.sendData(JSON.stringify(formData));
-    tg.close();
+    // tg.close();
   }, [tg, formData, setForm, updateFrequency]);
 
   const prevStep = useCallback(() => {
