@@ -17,7 +17,7 @@ const Step6 = () => {
     }
   const [ updateFrequency, setUpdateFrequency ] = useState(updateFrequencyoptions.realTime);
 
-  const { tg, onToggleButton } = useTelegram();
+  const { tg } = useTelegram();
 
   const stage = useStepData();
   const setStage = useSetStep();
