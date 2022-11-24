@@ -14,9 +14,7 @@ const StepNavigator = (props) => {
       {stepsArray.map((el, index) => (
         <div
           key={index}
-          className={`StepNavigator__step ${
-            index + 1 <= step ? "passed" : ""
-          } 
+          className={`StepNavigator__step ${index + 1 <= step ? "passed" : ""} 
                 ${index + 1 === step ? "current" : ""}`}
         />
       ))}

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useSetForm, useFormData } from "state/formState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -8,7 +9,10 @@ import Checkbox from "components/Checkbox/Checkbox";
 import { useTelegram } from "hooks/useTelegram";
 
 const Step4 = () => {
-  const [selectedEvents, setSelectedEvents] = useState([]);
+  const formData = useFormData();
+  const setForm = useSetForm();
+
+  const [selectedEvents, setSelectedEvents] = useState(formData.events || []);
 
   const { tg } = useTelegram();
 
@@ -17,9 +21,10 @@ const Step4 = () => {
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
+      setForm((prev) => ({ ...prev, events: selectedEvents }));
       setStep(step + 1);
     }
-  }, [step, setStep]);
+  }, [step, setStep, setForm, selectedEvents]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
@@ -96,6 +101,7 @@ const Step4 = () => {
           name={event.name}
           label={event.name}
           hint={event.hint}
+          checked={selectedEvents.includes(event.name)}
           onChange={(value) => {
             handleChange(value);
           }}

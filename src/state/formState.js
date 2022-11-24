@@ -10,7 +10,7 @@ const initialState = {
   quests: [],
   events: [],
   reffProgram: true,
-  updateFrequency: updateFrequencyOptions.realTime
+  updateFrequency: updateFrequencyOptions.realTime,
 };
 
 export const formState = atom({

@@ -1,8 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep } from "state/stepState";
-import { updateFrequencyOptions, useFormData, useSetForm } from "state/formState";
-
+import {
+  updateFrequencyOptions,
+  useFormData,
+  useSetForm,
+} from "state/formState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
 
@@ -12,23 +15,23 @@ import CheckedBadge from "assets/svg/checkedBadge.svg";
 import Checkbox from "components/Checkbox/Checkbox";
 
 const Step6 = () => {
+  const formData = useFormData();
+  const setForm = useSetForm();
+
   const [updateFrequency, setUpdateFrequency] = useState(
-    updateFrequencyOptions.realTime
+    formData.updateFrequency
   );
 
   const { tg } = useTelegram();
-
-  const formData = useFormData();
-  const setForm = useSetForm();
 
   const step = useStepData();
   const setStep = useSetStep();
 
   const finish = useCallback(() => {
-    setForm(prev => ({...prev, updateFrequency: updateFrequency}));
-    console.log(formData)
-    // tg.close();
-  }, [formData, setForm, updateFrequency]);
+    setForm((prev) => ({ ...prev, updateFrequency: updateFrequency }));
+    tg.sendData(JSON.stringify(formData));
+    tg.close();
+  }, [tg, formData, setForm, updateFrequency]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
@@ -65,8 +68,6 @@ const Step6 = () => {
           <p>All done! You can change update frequency:</p>
         </div>
       </ModalContainer>
-
-      <button onClick={finish} />
 
       <div
         style={{

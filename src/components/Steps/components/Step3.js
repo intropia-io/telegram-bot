@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useSetForm, useFormData } from "state/formState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -8,7 +9,10 @@ import Checkbox from "components/Checkbox/Checkbox";
 import { useTelegram } from "hooks/useTelegram";
 
 const Step3 = () => {
-  const [selectedOpportunities, setSelectedOpportunities] = useState([]);
+  const formData = useFormData();
+  const setForm = useSetForm();
+
+  const [selectedQuests, setSelectedQuests] = useState(formData.quests || []);
 
   const { tg } = useTelegram();
 
@@ -17,9 +21,11 @@ const Step3 = () => {
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
+      setForm((prev) => ({ ...prev, quests: selectedQuests }));
+
       setStep(step + 1);
     }
-  }, [step, setStep]);
+  }, [step, setStep, selectedQuests, setForm]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
@@ -28,7 +34,7 @@ const Step3 = () => {
   }, [step, setStep]);
 
   useEffect(() => {
-    if (selectedOpportunities.length > 0) {
+    if (selectedQuests.length > 0) {
       tg.MainButton.setParams({
         text: "NEXT",
         color: "#04BEFE",
@@ -39,7 +45,7 @@ const Step3 = () => {
         color: "#8D9BD7",
       });
     }
-  }, [selectedOpportunities, tg]);
+  }, [selectedQuests, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStep);
@@ -55,15 +61,15 @@ const Step3 = () => {
       const isChecked = value.checked;
       // do whatever you want with isChecked value
       isChecked
-        ? setSelectedOpportunities(
-            selectedOpportunities.filter((name) => value.name !== name)
+        ? setSelectedQuests(
+            selectedQuests.filter((name) => value.name !== name)
           )
-        : setSelectedOpportunities((prev) => [...prev, value.name]);
+        : setSelectedQuests((prev) => [...prev, value.name]);
     },
-    [selectedOpportunities]
+    [selectedQuests]
   );
 
-  const opportunitiesList = [
+  const QuestsList = [
     {
       name: "full-time",
       hint: "short description about",
@@ -85,12 +91,13 @@ const Step3 = () => {
         What is your best match?
       </AssistContainer>
 
-      {opportunitiesList.map((opportunity, index) => (
+      {QuestsList.map((opportunity, index) => (
         <Checkbox
           key={index}
           name={opportunity.name}
           label={opportunity.name}
           hint={opportunity.hint}
+          checked={selectedQuests.includes(opportunity.name)}
           onChange={(value) => {
             handleChange(value);
           }}

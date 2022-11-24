@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
 
-
 import AssistContainer from "components/AssistContainer/AssistContainer";
 
 import { useTelegram } from "hooks/useTelegram";
@@ -19,7 +18,9 @@ const Step2 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
 
-  const [selectedDynasty, setSelectedDynasty] = useState(formData.dynasty || []);
+  const [selectedDynasty, setSelectedDynasty] = useState(
+    formData.dynasty || []
+  );
 
   const { tg } = useTelegram();
 
@@ -28,7 +29,7 @@ const Step2 = () => {
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
-      setForm(prev => ({...prev, dynasty: selectedDynasty}));
+      setForm((prev) => ({ ...prev, dynasty: selectedDynasty }));
       setStep(step + 1);
     }
   }, [step, setStep, selectedDynasty, setForm]);
