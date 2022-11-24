@@ -25,7 +25,7 @@ const Step6 = () => {
 
   const finish = useCallback(() => {
     tg.close();
-  }, [stage, setStage]);
+  }, [tg]);
 
   const prevStage = useCallback(() => {
     if (stage > 1) {
@@ -48,7 +48,7 @@ const Step6 = () => {
       tg.offEvent("mainButtonClicked", finish);
       tg.offEvent("backButtonClicked", prevStage);
     };
-  }, [prevStage, tg]);
+  }, [prevStage, finish, tg]);
 
   return (
     <>
