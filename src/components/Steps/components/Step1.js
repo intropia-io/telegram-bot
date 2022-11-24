@@ -12,7 +12,7 @@ const Step1 = () => {
 
   const [speechlines, setSpeechlines] = useState([line1]);
 
-  const { tg, onToggleButton } = useTelegram();
+  const { tg } = useTelegram();
 
   const stage = useStepData();
   const setStage = useSetStep();
@@ -24,12 +24,13 @@ const Step1 = () => {
   }, [stage, setStage]);
 
   useEffect(() => {
+    tg.MainButton.hide();
     const timeout = setTimeout(() => {
       tg.MainButton.setParams({
         text: "NEXT",
         color: "#04BEFE",
       });
-      onToggleButton();
+      tg.MainButton.show();
       setSpeechlines((prev) => [...prev, line2]);
     }, 2000);
 
@@ -37,7 +38,7 @@ const Step1 = () => {
       clearTimeout(timeout);
     };
     // eslint-disable-next-line
-  }, []);
+  }, [tg]);
 
   useEffect(() => {
     tg.setBackgroundColor("#141829");
