@@ -22,28 +22,32 @@ const Step6 = () => {
   const stage = useStepData();
   const setStage = useSetStep();
 
-  const nextStage = useCallback(() => {
-    if (stage < maxStageLength) {
-      setStage(stage + 1);
+  const finish = useCallback(() => {
+    tg.close();
+  }, [stage, setStage]);
+
+  const prevStage = useCallback(() => {
+    if (stage > 1) {
+      setStage(stage - 1);
     }
   }, [stage, setStage]);
 
   useEffect(() => {
     tg.MainButton.setParams({
-        text: "NEXT",
+        text: "Save",
         color: "#04BEFE",
       });
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", nextStage);
+    tg.onEvent("mainButtonClicked", finish);
+    tg.onEvent("backButtonClicked", prevStage);
     return () => {
-      tg.offEvent("mainButtonClicked", nextStage);
+      tg.offEvent("mainButtonClicked", finish);
+      tg.offEvent("backButtonClicked", prevStage);
     };
-  }, [nextStage, tg]);
-
-  console.log(updateFrequency)
+  }, [nextStage, prevStage, tg]);
 
   return (
     <>

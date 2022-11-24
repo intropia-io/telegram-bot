@@ -48,9 +48,6 @@ const Step2 = () => {
   }, [selectedDynasty, tg]);
 
   useEffect(() => {
-    tg.PopupParams.setParams({
-      text: 'Welcome'
-    })
     tg.BackButton.show();
   }, [tg])
 

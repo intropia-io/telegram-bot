@@ -41,7 +41,11 @@ const Step1 = () => {
 
   useEffect(() => {
     tg.setBackgroundColor('#141829');
-    tg.setHeaderColor('secondary_bg_color')
+    tg.setHeaderColor('bg_color')
+  }, [tg])
+
+  useEffect(() => {
+    tg.BackButton.hide();
   }, [tg])
 
   useEffect(() => {

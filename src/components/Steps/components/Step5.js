@@ -21,6 +21,12 @@ const Step5 = () => {
     }
   }, [stage, setStage]);
 
+  const prevStage = useCallback(() => {
+    if (stage > 1) {
+      setStage(stage - 1);
+    }
+  }, [stage, setStage]);
+
   useEffect(() => {
     tg.MainButton.setParams({
         text: "NEXT",
@@ -30,10 +36,12 @@ const Step5 = () => {
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);
+    tg.onEvent("backButtonClicked", prevStage);
     return () => {
       tg.offEvent("mainButtonClicked", nextStage);
+      tg.offEvent("backButtonClicked", prevStage);
     };
-  }, [nextStage, tg]);
+  }, [nextStage, prevStage, tg]);
 
   return (
     <>
