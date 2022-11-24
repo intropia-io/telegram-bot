@@ -40,6 +40,12 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
+    tg.PopupParams.setParams({
+      text: 'Welcome'
+    })
+  }, [tg])
+
+  useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);
     return () => {
       tg.offEvent("mainButtonClicked", nextStage);
