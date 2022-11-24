@@ -40,7 +40,7 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
-    tg.PopupParams.text = 'Welcome'
+    tg.setBackgroundColor('#141829');
   }, [tg])
 
   useEffect(() => {
