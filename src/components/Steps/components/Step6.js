@@ -47,7 +47,7 @@ const Step6 = () => {
       tg.offEvent("mainButtonClicked", finish);
       tg.offEvent("backButtonClicked", prevStage);
     };
-  }, [nextStage, prevStage, tg]);
+  }, [prevStage, tg]);
 
   return (
     <>
