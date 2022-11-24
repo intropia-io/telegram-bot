@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { useStepData, useSetStep, maxStageLength } from "state/stepState";
+import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 
 import ModalContainer from "../../ModalContainer/ModalContainer";
 
@@ -18,7 +18,7 @@ const Step1 = () => {
   const setStage = useSetStep();
 
   const nextStage = useCallback(() => {
-    if (stage < maxStageLength) {
+    if (stage < maxStepLength) {
       setStage(stage + 1);
     }
   }, [stage, setStage]);

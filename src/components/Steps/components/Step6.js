@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep } from "state/stepState";
+import { updateFrequencyOptions, useFormData, useSetForm } from "state/formState";
 
-import ModalContainer from "../../ModalContainer/ModalContainer";
+
+import ModalContainer from "components/ModalContainer/ModalContainer";
 
 import { useTelegram } from "hooks/useTelegram";
 
@@ -10,22 +12,23 @@ import CheckedBadge from "assets/svg/checkedBadge.svg";
 import Checkbox from "components/Checkbox/Checkbox";
 
 const Step6 = () => {
-  const updateFrequencyoptions = {
-    realTime: "real time updates",
-    weekly: "weekly compilation",
-  };
   const [updateFrequency, setUpdateFrequency] = useState(
-    updateFrequencyoptions.realTime
+    updateFrequencyOptions.realTime
   );
 
   const { tg } = useTelegram();
+
+  const formData = useFormData();
+  const setForm = useSetForm();
 
   const stage = useStepData();
   const setStage = useSetStep();
 
   const finish = useCallback(() => {
-    tg.close();
-  }, [tg]);
+    setForm(prev => [prev, ...{updateFrequency}])
+    console.log(formData)
+    // tg.close();
+  }, [tg, formData, setForm]);
 
   const prevStage = useCallback(() => {
     if (stage > 1) {
@@ -72,22 +75,22 @@ const Step6 = () => {
         }}
       >
         <Checkbox
-          checked={updateFrequencyoptions.realTime === updateFrequency}
+          checked={updateFrequencyOptions.realTime === updateFrequency}
           label="real time updates"
           background
           onChange={(value) => {
             const isChecked = value.checked;
-            !isChecked && setUpdateFrequency(updateFrequencyoptions.realTime);
+            !isChecked && setUpdateFrequency(updateFrequencyOptions.realTime);
           }}
         />
 
         <Checkbox
-          checked={updateFrequencyoptions.weekly === updateFrequency}
+          checked={updateFrequencyOptions.weekly === updateFrequency}
           label="weekly compilation"
           background
           onChange={(value) => {
             const isChecked = value.checked;
-            !isChecked && setUpdateFrequency(updateFrequencyoptions.weekly);
+            !isChecked && setUpdateFrequency(updateFrequencyOptions.weekly);
           }}
         />
       </div>

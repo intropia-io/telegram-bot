@@ -43,6 +43,7 @@
 .checkbox-wrapper label .hint {
   font-size: 14px;
   line-height: 16px;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.3);
 }
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { useStepData, useSetStep, maxStageLength } from "state/stepState";
+import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -16,7 +16,7 @@ const Step4 = () => {
   const setStage = useSetStep();
 
   const nextStage = useCallback(() => {
-    if (stage < maxStageLength) {
+    if (stage < maxStepLength) {
       setStage(stage + 1);
     }
   }, [stage, setStage]);

@@ -1,13 +1,13 @@
 import React from "react";
 
-import { useStepData, maxStageLength } from "../../state/stepState";
+import { useStepData, maxStepLength } from "../../state/stepState";
 
 import "./StepNavigator.css";
 
 const StepNavigator = (props) => {
   const stage = useStepData();
 
-  const stagesArray = Array.from(Array(maxStageLength));
+  const stagesArray = Array.from(Array(maxStepLength));
 
   return (
     <div className={"StepNavigator " + props.className}>
