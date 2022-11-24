@@ -27,6 +27,12 @@ const Step2 = () => {
     }
   }, [stage, setStage]);
 
+  const prevStage = useCallback(() => {
+    if (stage > 1) {
+      setStage(stage - 1);
+    }
+  }, [stage, setStage]);
+
   useEffect(() => {
     if (selectedDynasty.length > 0) {
       tg.MainButton.setParams({
@@ -42,11 +48,17 @@ const Step2 = () => {
   }, [selectedDynasty, tg]);
 
   useEffect(() => {
+    tg.BackButton.show();
+  }, [tg])
+
+  useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStage);
+    tg.onEvent("backButtonClicked", prevStage);
     return () => {
       tg.offEvent("mainButtonClicked", nextStage);
+      tg.offEvent("backButtonClicked", prevStage);
     };
-  }, [nextStage, tg]);
+  }, [nextStage, prevStage, tg]);
 
   const handleChange = useCallback(
     (value) => {
