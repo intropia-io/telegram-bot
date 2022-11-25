@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
 }
 
 #spike__container {
@@ -11,8 +14,6 @@
   height: 200px;
   display: flex;
   justify-content: center;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
   background-color: #060a1b;
 }
 
@@ -39,11 +40,6 @@
   line-height: 20px;
   text-align: center;
   transition: 0.3s;
-}
-
-.text_content div:nth-last-child(1) {
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
 @media (max-width: 1200px) {

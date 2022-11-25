@@ -42,19 +42,17 @@ const Step2 = () => {
 
   useEffect(() => {
     if (selectedDynasty.length > 0) {
-      tg.MainButton.setParams({
-        text: "NEXT",
-        color: "#04BEFE",
-      });
+      tg.MainButton.show();
     } else {
-      tg.MainButton.setParams({
-        text: "SKIP",
-        color: "#8D9BD7",
-      });
+      tg.MainButton.hide();
     }
   }, [selectedDynasty, tg]);
 
   useEffect(() => {
+    tg.MainButton.setParams({
+      text: "NEXT",
+      color: "#04BEFE",
+    });
     tg.BackButton.show();
   }, [tg]);
 

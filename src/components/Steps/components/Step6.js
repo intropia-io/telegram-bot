@@ -84,6 +84,7 @@ const Step6 = () => {
           checked={updateFrequencyOptions.realTime === updateFrequency}
           label="real time updates"
           background
+          round
           onChange={(value) => {
             const isChecked = value.checked;
             !isChecked && setUpdateFrequency(updateFrequencyOptions.realTime);
@@ -94,6 +95,7 @@ const Step6 = () => {
           checked={updateFrequencyOptions.weekly === updateFrequency}
           label="weekly compilation"
           background
+          round
           onChange={(value) => {
             const isChecked = value.checked;
             !isChecked && setUpdateFrequency(updateFrequencyOptions.weekly);

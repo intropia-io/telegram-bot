@@ -8,6 +8,7 @@ const Checkbox = ({
   icon,
   onChange,
   background,
+  round,
   ...rest
 }) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -33,7 +34,7 @@ const Checkbox = ({
         </label>
       </div>
 
-      <div className={`checkbox ${isChecked ? "checked" : ""}`} />
+      <div className={`checkbox ${isChecked ? "checked" : ""} ${round ? "round" : ""}`} />
     </div>
   );
 };

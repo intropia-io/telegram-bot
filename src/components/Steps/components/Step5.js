@@ -60,6 +60,7 @@ const Step5 = () => {
         checked={reffProgram}
         label="yes, reward is cool!"
         hint="oh yeah, real cash direct to your wallet"
+        round
         onChange={(value) => {
           const isChecked = value.checked;
           // do whatever you want with isChecked value
@@ -71,6 +72,7 @@ const Step5 = () => {
         checked={!reffProgram}
         label="no"
         hint="so cute, dude"
+        round
         onChange={(value) => {
           const isChecked = value.checked;
           // do whatever you want with isChecked value

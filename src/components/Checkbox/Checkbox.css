@@ -69,6 +69,10 @@
   transition: 0.3s;
 }
 
+.checkbox.round {
+  border-radius: 100%;
+}
+
 .checkbox.checked {
   background-image: url("data:image/svg+xml;utf8, <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.99997 13.586L4.70697 10.293L3.29297 11.707L7.99997 16.414L17.707 6.70697L16.293 5.29297L7.99997 13.586Z' fill='white'/></svg>");
   background-size: contain;

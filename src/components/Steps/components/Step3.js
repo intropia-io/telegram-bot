@@ -35,15 +35,9 @@ const Step3 = () => {
 
   useEffect(() => {
     if (selectedQuests.length > 0) {
-      tg.MainButton.setParams({
-        text: "NEXT",
-        color: "#04BEFE",
-      });
+      tg.MainButton.show();
     } else {
-      tg.MainButton.setParams({
-        text: "SKIP",
-        color: "#8D9BD7",
-      });
+      tg.MainButton.hide();
     }
   }, [selectedQuests, tg]);
 
