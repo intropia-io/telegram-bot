@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { maxStepLength, useSetStep, useStepData } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
+import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -11,6 +12,8 @@ import { useTelegram } from "hooks/useTelegram";
 const Step5 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
+
+  const setTitle = useSetTitle();
 
   const [reffProgram, setReffProgram] = useState(formData.reffProgram);
 
@@ -47,6 +50,10 @@ const Step5 = () => {
       tg.offEvent("backButtonClicked", prevStep);
     };
   }, [nextStep, prevStep, tg]);
+
+  useEffect(() => {
+    setTitle("Referral program");
+  }, [setTitle]);
 
   return (
     <>

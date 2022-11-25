@@ -6,6 +6,7 @@ import {
   useFormData,
   useSetForm,
 } from "state/formState";
+import { useSetTitle } from "state/titleState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
 
@@ -17,6 +18,8 @@ import Checkbox from "components/Checkbox/Checkbox";
 const Step6 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
+
+  const setTitle = useSetTitle();
 
   const [updateFrequency, setUpdateFrequency] = useState(
     formData.updateFrequency
@@ -43,6 +46,7 @@ const Step6 = () => {
   }, [updateFrequency, setForm]);
 
   useEffect(() => {
+    setTitle("All done");
     tg.MainButton.setParams({
       text: "Save",
       color: "#04BEFE",

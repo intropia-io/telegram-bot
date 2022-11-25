@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
+import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 
@@ -17,6 +18,8 @@ import artistBadge from "assets/svg/artistBadge.svg";
 const Step2 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
+
+  const setTitle = useSetTitle();
 
   const [selectedDynasty, setSelectedDynasty] = useState(
     formData.dynasty || []
@@ -49,12 +52,13 @@ const Step2 = () => {
   }, [selectedDynasty, tg]);
 
   useEffect(() => {
+    setTitle("Choose your dynasty");
     tg.MainButton.setParams({
       text: "NEXT",
       color: "#04BEFE",
     });
     tg.BackButton.show();
-  }, [tg]);
+  }, [tg, setTitle]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStep);

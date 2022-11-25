@@ -34,7 +34,11 @@ const Checkbox = ({
         </label>
       </div>
 
-      <div className={`checkbox ${isChecked ? "checked" : ""} ${round ? "round" : ""}`} />
+      <div
+        className={`checkbox ${isChecked ? "checked" : ""} ${
+          round ? "round" : ""
+        }`}
+      />
     </div>
   );
 };

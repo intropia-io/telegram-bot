@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
+import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -15,6 +16,8 @@ const Step4 = () => {
   const [selectedEvents, setSelectedEvents] = useState(formData.events || []);
 
   const { tg } = useTelegram();
+
+  const setTitle = useSetTitle();
 
   const step = useStepData();
   const setStep = useSetStep();
@@ -54,6 +57,10 @@ const Step4 = () => {
       tg.offEvent("backButtonClicked", prevStep);
     };
   }, [nextStep, prevStep, tg]);
+
+  useEffect(() => {
+    setTitle("Events");
+  }, [setTitle]);
 
   const handleChange = useCallback(
     (value) => {

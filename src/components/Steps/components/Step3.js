@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
+import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -11,6 +12,8 @@ import { useTelegram } from "hooks/useTelegram";
 const Step3 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
+
+  const setTitle = useSetTitle();
 
   const [selectedQuests, setSelectedQuests] = useState(formData.quests || []);
 
@@ -49,6 +52,10 @@ const Step3 = () => {
       tg.offEvent("backButtonClicked", prevStep);
     };
   }, [nextStep, prevStep, tg]);
+
+  useEffect(() => {
+    setTitle("Opportunities");
+  }, [setTitle]);
 
   const handleChange = useCallback(
     (value) => {

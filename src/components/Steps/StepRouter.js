@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useStepData } from "state/stepState";
+import { useTitleData } from "state/titleState";
 
 import StepNavigator from "components/StepNavigator/StepNavigator";
 
@@ -12,6 +13,7 @@ import Step6 from "./components/Step6";
 
 const StepRouter = () => {
   const step = useStepData();
+  const title = useTitleData();
 
   const stepComponent = useMemo(() => {
     switch (step) {
@@ -34,7 +36,7 @@ const StepRouter = () => {
 
   return (
     <>
-      <StepNavigator />
+      <StepNavigator title={title} />
       {stepComponent}
     </>
   );

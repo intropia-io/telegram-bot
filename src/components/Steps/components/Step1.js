@@ -1,14 +1,17 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useSetTitle } from "state/titleState";
 
-import ModalContainer from "../../ModalContainer/ModalContainer";
+import ModalContainer from "components/ModalContainer/ModalContainer";
 
 import { useTelegram } from "hooks/useTelegram";
 
 const Step1 = () => {
   const line1 = "Hey:) I’m Spike, tr3butor assistant.";
   const line2 = "I’ll help you to customize web3 opportunity feed";
+
+  const setTitle = useSetTitle();
 
   const [speechlines, setSpeechlines] = useState([line1]);
 
@@ -46,8 +49,9 @@ const Step1 = () => {
   }, [tg]);
 
   useEffect(() => {
+    setTitle("Welcome");
     tg.BackButton.hide();
-  }, [tg]);
+  }, [tg, setTitle]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStep);
