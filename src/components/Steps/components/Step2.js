@@ -10,12 +10,6 @@ import AssistContainer from "components/AssistContainer/AssistContainer";
 import { useTelegram } from "hooks/useTelegram";
 import Checkbox from "components/Checkbox/Checkbox";
 
-import developmentBadge from "assets/svg/artistBadge.svg";
-import designBadge from "assets/svg/designBadge.svg";
-import managementBadge from "assets/svg/managementBadge.svg";
-import marketingBadge from "assets/svg/marketingBadge.svg";
-import artistBadge from "assets/svg/artistBadge.svg";
-
 const Step2 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
@@ -95,34 +89,6 @@ const Step2 = () => {
     [selectedDynasty]
   );
 
-  const dynastyList = [
-    {
-      name: "development",
-      hint: "create web app and JS frameworks",
-      icon: developmentBadge,
-    },
-    {
-      name: "design",
-      hint: "UX/UI creator, graphic design",
-      icon: designBadge,
-    },
-    {
-      name: "management",
-      hint: "you are a moderator of your team",
-      icon: managementBadge,
-    },
-    {
-      name: "marketing",
-      hint: "you promote product and setup socials",
-      icon: marketingBadge,
-    },
-    {
-      name: "artist",
-      hint: "you change this visible world",
-      icon: artistBadge,
-    },
-  ];
-
   return (
     <>
       <AssistContainer>
@@ -130,13 +96,13 @@ const Step2 = () => {
         Let’s review who are you (^--^)
       </AssistContainer>
 
-      {dynastyList.map((dynasty, index) => (
+      {dynastyOptions?.map((dynasty, index) => (
         <Checkbox
           key={index}
           name={dynasty.name}
-          icon={dynasty.icon}
+          icon={dynasty.avatar}
           label={dynasty.name}
-          hint={dynasty.hint}
+          hint={dynasty.description}
           checked={selectedDynasty.includes(dynasty.name)}
           onChange={(value) => {
             handleChange(value);
