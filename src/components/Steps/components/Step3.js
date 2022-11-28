@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
-import { useTypesData  } from "state/typesState";
+import { useTypesData } from "state/typesState";
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
 

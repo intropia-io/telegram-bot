@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
-import { useSetTypes  } from "state/typesState";
+import { useSetTypes } from "state/typesState";
+import { useSetDynasty } from "state/dynastyState";
 import { useSetTitle } from "state/titleState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
@@ -10,11 +11,16 @@ import ModalContainer from "components/ModalContainer/ModalContainer";
 import { useTelegram } from "hooks/useTelegram";
 
 const Step1 = () => {
+  const categoryTypes = {
+    quest: "QUEST",
+    event: "EVENT",
+  };
   const line1 = "Hey:) I’m Spike, tr3butor assistant.";
   const line2 = "I’ll help you to customize web3 opportunity feed";
 
   const setTitle = useSetTitle();
   const setTypes = useSetTypes();
+  const setDynasty = useSetDynasty();
 
   const [speechlines, setSpeechlines] = useState([line1]);
 
@@ -30,20 +36,28 @@ const Step1 = () => {
   }, [step, setStep]);
 
   useEffect(() => {
-    axios.get(`https://rest.tr3butor.io/api/type`)
-    .then(res => {
+    axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
       const types = res.data;
       const questTypes = [];
       const eventsTypes = [];
-      types.map(type => {
-        if (type.categoryType === "QUEST") {
-          questTypes.push(type)
-        } else if (type.categoryType === "EVENT") {
-          eventsTypes.push(type)
+      types.forEach((type) => {
+        if (type.categoryType === categoryTypes.quest) {
+          questTypes.push(type);
+        } else if (type.categoryType === categoryTypes.event) {
+          eventsTypes.push(type);
         }
-      })
-      setTypes({questTypes: questTypes, eventsTypes: eventsTypes})
-    })
+      });
+      setTypes({ questTypes: questTypes, eventsTypes: eventsTypes });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    axios.get(`https://rest.tr3butor.io/api/dynasty`).then((res) => {
+      const dynasty = res.data;
+      setDynasty(dynasty);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

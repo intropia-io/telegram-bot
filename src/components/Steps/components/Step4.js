@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
-import { useTypesData  } from "state/typesState";
+import { useTypesData } from "state/typesState";
 import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import axios from 'axios';
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useDynastyData } from "state/dynastyState";
 
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
@@ -16,20 +16,11 @@ const Step2 = () => {
   const setForm = useSetForm();
 
   const setTitle = useSetTitle();
+  const dynastyData = useDynastyData();
 
   const [selectedDynasty, setSelectedDynasty] = useState(
     formData.dynasty || []
   );
-
-  const [dynastyOptions, setDynastyOptions] = useState([]);
-
-  useEffect(() => {
-    axios.get(`https://rest.tr3butor.io/api/dynasty`)
-    .then(res => {
-      const dynasty = res.data;
-      setDynastyOptions(dynasty);
-    })
-  }, []);
 
   const { tg } = useTelegram();
 
@@ -88,7 +79,7 @@ const Step2 = () => {
     [selectedDynasty]
   );
 
-  if (!dynastyOptions) return null;
+  if (!dynastyData) return null;
 
   return (
     <>
@@ -97,7 +88,7 @@ const Step2 = () => {
         Let’s review who are you (^--^)
       </AssistContainer>
 
-      {dynastyOptions?.map((dynasty, index) => (
+      {dynastyData?.map((dynasty, index) => (
         <Checkbox
           key={index}
           name={dynasty.name}

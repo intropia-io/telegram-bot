@@ -4,7 +4,7 @@ export const typesState = atom({
   key: "typesState",
   default: {
     questTypes: [],
-    eventsTypes: []
+    eventsTypes: [],
   },
 });
 
