@@ -3,7 +3,11 @@ import animateSpike from "../../helper/animateSpike";
 
 import "./AssistContainer.css";
 
-const AssistContainer = ({ children }) => {
+type Props = {
+  children: JSX.Element,
+};
+
+const AssistContainer: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     animateSpike("assistSpikeCanvas");
   }, []);

@@ -8,6 +8,7 @@ import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
+import React from "react";
 
 const Step5 = () => {
   const formData = useFormData();
@@ -72,20 +73,18 @@ const Step5 = () => {
           const isChecked = value.checked;
           // do whatever you want with isChecked value
           !isChecked && setReffProgram(true);
-        }}
-      />
+        }} icon={undefined} background={undefined} />
 
       <Checkbox
         checked={!reffProgram}
         label="no"
         hint="so cute, dude"
         round
-        onChange={(value) => {
+        onDataChange={(value) => {
           const isChecked = value.checked;
           // do whatever you want with isChecked value
           !isChecked && setReffProgram(false);
-        }}
-      />
+        }} icon={undefined} background={undefined} />
     </>
   );
 };

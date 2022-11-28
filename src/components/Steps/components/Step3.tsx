@@ -1,26 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
-import { useDynastyData } from "state/dynastyState";
-
+import { useTypesData } from "state/typesState";
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
-
-import { useTelegram } from "hooks/useTelegram";
 import Checkbox from "components/Checkbox/Checkbox";
 
-const Step2 = () => {
+import { useTelegram } from "hooks/useTelegram";
+
+const Step3 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
 
   const setTitle = useSetTitle();
-  const dynastyData = useDynastyData();
+  const typesData = useTypesData();
 
-  const [selectedDynasty, setSelectedDynasty] = useState(
-    formData.dynasty || []
-  );
+  const [selectedQuests, setSelectedQuests] = useState(formData.quests || []);
 
   const { tg } = useTelegram();
 
@@ -29,10 +26,11 @@ const Step2 = () => {
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
-      setForm((prev) => ({ ...prev, dynasty: selectedDynasty }));
+      setForm((prev) => ({ ...prev, quests: selectedQuests }));
+
       setStep(step + 1);
     }
-  }, [step, setStep, selectedDynasty, setForm]);
+  }, [step, setStep, selectedQuests, setForm]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
@@ -41,21 +39,12 @@ const Step2 = () => {
   }, [step, setStep]);
 
   useEffect(() => {
-    if (selectedDynasty.length > 0) {
+    if (selectedQuests.length > 0) {
       tg.MainButton.show();
     } else {
       tg.MainButton.hide();
     }
-  }, [selectedDynasty, tg]);
-
-  useEffect(() => {
-    setTitle("Choose your dynasty");
-    tg.MainButton.setParams({
-      text: "NEXT",
-      color: "#04BEFE",
-    });
-    tg.BackButton.show();
-  }, [tg, setTitle]);
+  }, [selectedQuests, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStep);
@@ -66,43 +55,43 @@ const Step2 = () => {
     };
   }, [nextStep, prevStep, tg]);
 
+  useEffect(() => {
+    setTitle("Opportunities");
+  }, [setTitle]);
+
   const handleChange = useCallback(
     (value) => {
       const isChecked = value.checked;
       // do whatever you want with isChecked value
       isChecked
-        ? setSelectedDynasty(
-            selectedDynasty.filter((name) => value.name !== name)
-          )
-        : setSelectedDynasty((prev) => [...prev, value.name]);
+        ? setSelectedQuests(
+          selectedQuests.filter((name) => value.name !== name)
+        )
+        : setSelectedQuests((prev) => [...prev, value.name]);
     },
-    [selectedDynasty]
+    [selectedQuests]
   );
-
-  if (!dynastyData) return null;
 
   return (
     <>
       <AssistContainer>
-        We use dynasty instead typical categories. <br />
-        Let’s review who are you (^--^)
+        tr3butor collects all possible oportunities. <br />
+        What is your best match?
       </AssistContainer>
 
-      {dynastyData?.map((dynasty, index) => (
+      {typesData.questTypes.map((type, index) => (
         <Checkbox
           key={index}
-          name={dynasty.name}
-          icon={dynasty.avatar}
-          label={dynasty.name}
-          hint={dynasty.description}
-          checked={selectedDynasty.includes(dynasty.name)}
-          onChange={(value) => {
+          name={type.name}
+          label={type.name}
+          hint={type.description}
+          checked={selectedQuests.includes(type.name)}
+          onDataChange={(value) => {
             handleChange(value);
-          }}
-        />
+          }} />
       ))}
     </>
   );
 };
 
-export default Step2;
+export default Step3;

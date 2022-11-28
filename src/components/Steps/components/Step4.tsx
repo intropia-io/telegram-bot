@@ -70,8 +70,8 @@ const Step4 = () => {
       // do whatever you want with isChecked value
       isChecked
         ? setSelectedEvents(
-            selectedEvents.filter((name) => value.name !== name)
-          )
+          selectedEvents.filter((name) => value.name !== name)
+        )
         : setSelectedEvents((prev) => [...prev, value.name]);
     },
     [selectedEvents]
@@ -92,10 +92,9 @@ const Step4 = () => {
           label={event.name}
           hint={event.description}
           checked={selectedEvents.includes(event.name)}
-          onChange={(value) => {
+          onDataChange={(value) => {
             handleChange(value);
-          }}
-        />
+          }} icon={undefined} background={undefined} round={undefined} />
       ))}
     </>
   );

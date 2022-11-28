@@ -36,7 +36,7 @@ const StepRouter = () => {
 
   return (
     <>
-      <StepNavigator title={title} />
+      <StepNavigator title={title} className={undefined} />
       {stepComponent}
     </>
   );

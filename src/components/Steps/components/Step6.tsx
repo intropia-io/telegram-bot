@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import { useStepData, useSetStep } from "state/stepState";
 import {
   updateFrequencyOptions,
   useFormData,
-  useSetForm,
+  useSetForm
 } from "state/formState";
+import { useSetStep, useStepData } from "state/stepState";
 import { useSetTitle } from "state/titleState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
@@ -80,7 +80,7 @@ const Step6 = () => {
         style={{
           display: "flex",
           flexDirection: "row",
-          aligmItems: "center",
+          alignItems: "center",
           gap: 10,
         }}
       >
@@ -92,19 +92,17 @@ const Step6 = () => {
           onChange={(value) => {
             const isChecked = value.checked;
             !isChecked && setUpdateFrequency(updateFrequencyOptions.realTime);
-          }}
-        />
+          }} />
 
         <Checkbox
           checked={updateFrequencyOptions.weekly === updateFrequency}
           label="weekly compilation"
           background
           round
-          onChange={(value) => {
+          onDataChange={(value) => {
             const isChecked = value.checked;
             !isChecked && setUpdateFrequency(updateFrequencyOptions.weekly);
-          }}
-        />
+          } } hint={""}  />
       </div>
     </>
   );

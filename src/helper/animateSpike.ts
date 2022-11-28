@@ -10,11 +10,12 @@ import {
   WebGLRenderer,
 } from "three";
 
-const animateSpike = (spikeName) => {
-  let canvas = document.getElementById(spikeName);
+const animateSpike = (spikeName: string) => {
+  let canvas = document.getElementById(spikeName) as HTMLCanvasElement;
+
   let renderer = new WebGLRenderer({
-    canvas: canvas,
-    context: canvas.getContext("webgl2"),
+    canvas: canvas!,
+    context: canvas?.getContext("webgl2")!,
     antialias: true,
     alpha: true,
   });
@@ -53,7 +54,7 @@ const animateSpike = (spikeName) => {
   let ambientLight = new AmbientLight(0x798296);
   scene.add(ambientLight);
 
-  let sphere = new Mesh(geometry, material);
+  let sphere = new Mesh(geometry, material) as any;
 
   scene.add(sphere);
 
@@ -80,6 +81,7 @@ const animateSpike = (spikeName) => {
   }
 
   requestAnimationFrame(animate);
+
 };
 
 export default animateSpike;

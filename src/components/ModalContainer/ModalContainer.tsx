@@ -3,7 +3,11 @@ import animateSpike from "../../helper/animateSpike";
 
 import "./ModalContainer.css";
 
-const ModalContainer = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+}
+
+const ModalContainer: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     animateSpike("spikeCanvas");
   }, []);

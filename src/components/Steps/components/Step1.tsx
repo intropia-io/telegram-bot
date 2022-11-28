@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 
-import { useStepData, useSetStep, maxStepLength } from "state/stepState";
-import { useSetTypes } from "state/typesState";
 import { useSetDynasty } from "state/dynastyState";
+import { maxStepLength, useSetStep, useStepData } from "state/stepState";
 import { useSetTitle } from "state/titleState";
+import { useSetTypes } from "state/typesState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
 
