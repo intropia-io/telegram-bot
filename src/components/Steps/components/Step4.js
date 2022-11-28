@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
+import { useTypesData  } from "state/typesState";
 import { useSetTitle } from "state/titleState";
 
 import AssistContainer from "components/AssistContainer/AssistContainer";
@@ -12,6 +13,7 @@ import { useTelegram } from "hooks/useTelegram";
 const Step4 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
+  const typesData = useTypesData();
 
   const [selectedEvents, setSelectedEvents] = useState(formData.events || []);
 
@@ -75,25 +77,6 @@ const Step4 = () => {
     [selectedEvents]
   );
 
-  const eventsList = [
-    {
-      name: "conference",
-      hint: "short description about",
-    },
-    {
-      name: "meetup",
-      hint: "short description about",
-    },
-    {
-      name: "workshop",
-      hint: "short description about",
-    },
-    {
-      name: "hackathon",
-      hint: "short description about",
-    },
-  ];
-
   return (
     <>
       <AssistContainer>
@@ -102,12 +85,12 @@ const Step4 = () => {
         Use our calendar for your upskill...
       </AssistContainer>
 
-      {eventsList.map((event, index) => (
+      {typesData.eventsTypes.map((event, index) => (
         <Checkbox
           key={index}
           name={event.name}
           label={event.name}
-          hint={event.hint}
+          hint={event.description}
           checked={selectedEvents.includes(event.name)}
           onChange={(value) => {
             handleChange(value);

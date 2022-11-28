@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from 'axios';
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
 
@@ -26,11 +27,9 @@ const Step2 = () => {
     axios.get(`https://rest.tr3butor.io/api/dynasty`)
     .then(res => {
       const dynasty = res.data;
-      setDynastyOptions({ dynasty });
+      setDynastyOptions(dynasty);
     })
   }, []);
-
-  console.log(dynastyOptions)
 
   const { tg } = useTelegram();
 
@@ -88,6 +87,8 @@ const Step2 = () => {
     },
     [selectedDynasty]
   );
+
+  if (!dynastyOptions) return null;
 
   return (
     <>

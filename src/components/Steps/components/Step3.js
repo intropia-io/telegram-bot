@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useTypesData  } from "state/typesState";
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
 
@@ -14,6 +15,7 @@ const Step3 = () => {
   const setForm = useSetForm();
 
   const setTitle = useSetTitle();
+  const typesData = useTypesData();
 
   const [selectedQuests, setSelectedQuests] = useState(formData.quests || []);
 
@@ -70,21 +72,6 @@ const Step3 = () => {
     [selectedQuests]
   );
 
-  const QuestsList = [
-    {
-      name: "full-time",
-      hint: "short description about",
-    },
-    {
-      name: "grant",
-      hint: "short description about",
-    },
-    {
-      name: "bounty",
-      hint: "short description about",
-    },
-  ];
-
   return (
     <>
       <AssistContainer>
@@ -92,13 +79,13 @@ const Step3 = () => {
         What is your best match?
       </AssistContainer>
 
-      {QuestsList.map((opportunity, index) => (
+      {typesData.questTypes.map((type, index) => (
         <Checkbox
           key={index}
-          name={opportunity.name}
-          label={opportunity.name}
-          hint={opportunity.hint}
-          checked={selectedQuests.includes(opportunity.name)}
+          name={type.name}
+          label={type.name}
+          hint={type.description}
+          checked={selectedQuests.includes(type.name)}
           onChange={(value) => {
             handleChange(value);
           }}

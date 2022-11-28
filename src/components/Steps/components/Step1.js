@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
+import axios from 'axios';
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
+import { useSetTypes  } from "state/typesState";
 import { useSetTitle } from "state/titleState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
@@ -12,6 +14,7 @@ const Step1 = () => {
   const line2 = "I’ll help you to customize web3 opportunity feed";
 
   const setTitle = useSetTitle();
+  const setTypes = useSetTypes();
 
   const [speechlines, setSpeechlines] = useState([line1]);
 
@@ -25,6 +28,23 @@ const Step1 = () => {
       setStep(step + 1);
     }
   }, [step, setStep]);
+
+  useEffect(() => {
+    axios.get(`https://rest.tr3butor.io/api/type`)
+    .then(res => {
+      const types = res.data;
+      const questTypes = [];
+      const eventsTypes = [];
+      types.map(type => {
+        if (type.categoryType === "QUEST") {
+          questTypes.push(type)
+        } else if (type.categoryType === "EVENT") {
+          eventsTypes.push(type)
+        }
+      })
+      setTypes({questTypes: questTypes, eventsTypes: eventsTypes})
+    })
+  }, []);
 
   useEffect(() => {
     tg.MainButton.hide();
