@@ -7,7 +7,7 @@ import "./StepNavigator.css";
 type Props = {
   className?: string;
   title?: string;
-}
+};
 
 const StepNavigator: React.FC<Props> = ({ className, title }) => {
   const step = useStepData();
@@ -21,8 +21,9 @@ const StepNavigator: React.FC<Props> = ({ className, title }) => {
         {stepsArray.map((el, index) => (
           <div
             key={index}
-            className={`StepNavigator__step ${index + 1 <= step ? "passed" : ""
-              } 
+            className={`StepNavigator__step ${
+              index + 1 <= step ? "passed" : ""
+            } 
                 ${index + 1 === step ? "current" : ""}`}
           />
         ))}

@@ -2,13 +2,13 @@ import React, { HTMLInputTypeAttribute, useEffect, useState } from "react";
 import "./Checkbox.css";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  icon?: string,
-  background?: boolean,
-  round?: boolean,
-  hint?: string,
-  label: string,
-  onDataChange?: (name: string, checked: boolean) => void,
-};
+  icon?: string | null;
+  background?: boolean;
+  round?: boolean;
+  hint?: string | null;
+  label: string;
+  onDataChange?: (name: string, checked: boolean) => void;
+}
 
 const Checkbox: React.FC<Props> = ({
   icon,
@@ -43,8 +43,9 @@ const Checkbox: React.FC<Props> = ({
       </div>
 
       <div
-        className={`checkbox ${isChecked ? "checked" : ""} ${round ? "round" : ""
-          }`}
+        className={`checkbox ${isChecked ? "checked" : ""} ${
+          round ? "round" : ""
+        }`}
       />
     </div>
   );

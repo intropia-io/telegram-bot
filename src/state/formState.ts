@@ -1,16 +1,12 @@
+import { ReffProgram, UpdateFrequency } from "helper/enum";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
-export const updateFrequencyOptions = {
-  realTime: "real time updates",
-  weekly: "weekly compilation",
-};
-
 const initialState = {
-  dynasty: [],
-  quests: [],
-  events: [],
-  reffProgram: true,
-  updateFrequency: updateFrequencyOptions.realTime,
+  dynasty: [] as string[],
+  quests: [] as string[],
+  events: [] as string[],
+  reffProgram: ReffProgram.SUBSCRIBED,
+  updateFrequency: UpdateFrequency.REALTIME,
 };
 
 export const formState = atom({

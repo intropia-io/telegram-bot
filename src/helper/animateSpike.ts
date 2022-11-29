@@ -81,7 +81,6 @@ const animateSpike = (spikeName: string) => {
   }
 
   requestAnimationFrame(animate);
-
 };
 
 export default animateSpike;

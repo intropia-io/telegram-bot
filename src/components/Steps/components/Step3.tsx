@@ -17,7 +17,9 @@ const Step3 = () => {
   const setTitle = useSetTitle();
   const typesData = useTypesData();
 
-  const [selectedQuests, setSelectedQuests] = useState(formData.quests || []);
+  const [selectedQuests, setSelectedQuests] = useState<string[]>(
+    formData.quests || []
+  );
 
   const { tg } = useTelegram();
 
@@ -60,14 +62,12 @@ const Step3 = () => {
   }, [setTitle]);
 
   const handleChange = useCallback(
-    (value) => {
-      const isChecked = value.checked;
+    (value: string, checked: boolean) => {
+      const isChecked = checked;
       // do whatever you want with isChecked value
       isChecked
-        ? setSelectedQuests(
-          selectedQuests.filter((name) => value.name !== name)
-        )
-        : setSelectedQuests((prev) => [...prev, value.name]);
+        ? setSelectedQuests((prev) => [...prev, value])
+        : setSelectedQuests(selectedQuests.filter((id) => value !== id));
     },
     [selectedQuests]
   );
@@ -75,20 +75,21 @@ const Step3 = () => {
   return (
     <>
       <AssistContainer>
-        tr3butor collects all possible oportunities. <br />
-        What is your best match?
+        <>
+          tr3butor collects all possible oportunities. <br />
+          What is your best match?
+        </>
       </AssistContainer>
 
       {typesData.questTypes.map((type, index) => (
         <Checkbox
           key={index}
-          name={type.name}
+          name={type.id}
           label={type.name}
           hint={type.description}
-          checked={selectedQuests.includes(type.name)}
-          onDataChange={(value) => {
-            handleChange(value);
-          }} />
+          checked={selectedQuests.includes(type.id)}
+          onDataChange={handleChange}
+        />
       ))}
     </>
   );

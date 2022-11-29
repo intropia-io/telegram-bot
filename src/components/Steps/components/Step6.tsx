@@ -1,10 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import {
-  updateFrequencyOptions,
-  useFormData,
-  useSetForm
-} from "state/formState";
+import { useFormData, useSetForm } from "state/formState";
 import { useSetStep, useStepData } from "state/stepState";
 import { useSetTitle } from "state/titleState";
 
@@ -12,8 +8,10 @@ import ModalContainer from "components/ModalContainer/ModalContainer";
 
 import { useTelegram } from "hooks/useTelegram";
 
-import CheckedBadge from "assets/svg/checkedBadge.svg";
 import Checkbox from "components/Checkbox/Checkbox";
+import { UpdateFrequency } from "helper/enum";
+
+const CheckedBadge: string = require("assets/svg/checkedBadge.svg").default;
 
 const Step6 = () => {
   const formData = useFormData();
@@ -21,9 +19,11 @@ const Step6 = () => {
 
   const setTitle = useSetTitle();
 
-  const [updateFrequency, setUpdateFrequency] = useState(
+  const [updateFrequency, setUpdateFrequency] = useState<UpdateFrequency>(
     formData.updateFrequency
   );
+
+  console.log(updateFrequency);
 
   const { tg } = useTelegram();
 
@@ -85,24 +85,27 @@ const Step6 = () => {
         }}
       >
         <Checkbox
-          checked={updateFrequencyOptions.realTime === updateFrequency}
+          checked={updateFrequency === UpdateFrequency.REALTIME}
           label="real time updates"
           background
           round
-          onChange={(value) => {
-            const isChecked = value.checked;
-            !isChecked && setUpdateFrequency(updateFrequencyOptions.realTime);
-          }} />
+          onDataChange={(name: string, checked: boolean) => {
+            const isChecked = checked;
+            isChecked && setUpdateFrequency(UpdateFrequency.REALTIME);
+          }}
+        />
 
         <Checkbox
-          checked={updateFrequencyOptions.weekly === updateFrequency}
+          checked={updateFrequency === UpdateFrequency.WEEKLY}
           label="weekly compilation"
           background
           round
-          onDataChange={(value) => {
-            const isChecked = value.checked;
-            !isChecked && setUpdateFrequency(updateFrequencyOptions.weekly);
-          } } hint={""}  />
+          onDataChange={(name: string, checked: boolean) => {
+            const isChecked = checked;
+            isChecked && setUpdateFrequency(UpdateFrequency.WEEKLY);
+          }}
+          hint={""}
+        />
       </div>
     </>
   );

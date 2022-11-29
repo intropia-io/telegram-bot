@@ -18,7 +18,7 @@ const Step2 = () => {
   const setTitle = useSetTitle();
   const dynastyData = useDynastyData();
 
-  const [selectedDynasty, setSelectedDynasty] = useState(
+  const [selectedDynasty, setSelectedDynasty] = useState<string[]>(
     formData.dynasty || []
   );
 
@@ -67,14 +67,12 @@ const Step2 = () => {
   }, [nextStep, prevStep, tg]);
 
   const handleChange = useCallback(
-    (value) => {
-      const isChecked = value.checked;
+    (value: string, checked: boolean) => {
+      const isChecked = checked;
       // do whatever you want with isChecked value
       isChecked
-        ? setSelectedDynasty(
-          selectedDynasty.filter((name) => value.name !== name)
-        )
-        : setSelectedDynasty((prev) => [...prev, value.name]);
+        ? setSelectedDynasty((prev) => [...prev, value])
+        : setSelectedDynasty(selectedDynasty.filter((id) => value !== id));
     },
     [selectedDynasty]
   );
@@ -84,21 +82,22 @@ const Step2 = () => {
   return (
     <>
       <AssistContainer>
-        We use dynasty instead typical categories. <br />
-        Let’s review who are you (^--^)
+        <>
+          We use dynasty instead typical categories. <br />
+          Let’s review who are you (^--^)
+        </>
       </AssistContainer>
 
       {dynastyData?.map((dynasty, index) => (
         <Checkbox
           key={index}
-          name={dynasty.name}
+          name={dynasty.id}
           icon={dynasty.avatar}
           label={dynasty.name}
           hint={dynasty.description}
-          checked={selectedDynasty.includes(dynasty.name)}
-          onDataChange={(value) => {
-            handleChange(value);
-          }} />
+          checked={selectedDynasty.includes(dynasty.id)}
+          onDataChange={handleChange}
+        />
       ))}
     </>
   );

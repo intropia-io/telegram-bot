@@ -1,8 +1,9 @@
+import { Dynasty } from "helper/enum";
 import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
 export const dynastyState = atom({
   key: "dynastyState",
-  default: [],
+  default: [] as Dynasty[],
 });
 
 export const useSetDynasty = () => useSetRecoilState(dynastyState);

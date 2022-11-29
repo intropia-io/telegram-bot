@@ -9,6 +9,7 @@ import { useSetTypes } from "state/typesState";
 import ModalContainer from "components/ModalContainer/ModalContainer";
 
 import { useTelegram } from "hooks/useTelegram";
+import { Type } from "helper/enum";
 
 const Step1 = () => {
   const categoryTypes = {
@@ -38,9 +39,9 @@ const Step1 = () => {
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
       const types = res.data;
-      const questTypes = [];
-      const eventsTypes = [];
-      types.forEach((type) => {
+      const questTypes: Type[] = [];
+      const eventsTypes: Type[] = [];
+      types.forEach((type: Type) => {
         if (type.categoryType === categoryTypes.quest) {
           questTypes.push(type);
         } else if (type.categoryType === categoryTypes.event) {

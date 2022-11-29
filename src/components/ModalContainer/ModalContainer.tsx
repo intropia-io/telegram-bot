@@ -5,7 +5,7 @@ import "./ModalContainer.css";
 
 type Props = {
   children: React.ReactNode;
-}
+};
 
 const ModalContainer: React.FC<Props> = ({ children }) => {
   useEffect(() => {

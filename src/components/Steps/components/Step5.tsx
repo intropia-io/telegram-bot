@@ -8,7 +8,7 @@ import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
-import React from "react";
+import { ReffProgram } from "helper/enum";
 
 const Step5 = () => {
   const formData = useFormData();
@@ -16,7 +16,9 @@ const Step5 = () => {
 
   const setTitle = useSetTitle();
 
-  const [reffProgram, setReffProgram] = useState(formData.reffProgram);
+  const [reffProgram, setReffProgram] = useState<ReffProgram>(
+    formData.reffProgram
+  );
 
   const { tg } = useTelegram();
 
@@ -59,32 +61,40 @@ const Step5 = () => {
   return (
     <>
       <AssistContainer>
-        tr3butor has a powerful referral program! <br />
-        Real reward for your candidate! <br />
-        Are you interested in?
+        <>
+          tr3butor has a powerful referral program! <br />
+          Real reward for your candidate! <br />
+          Are you interested in?
+        </>
       </AssistContainer>
 
       <Checkbox
-        checked={reffProgram}
+        checked={reffProgram === ReffProgram.SUBSCRIBED}
         label="yes, reward is cool!"
         hint="oh yeah, real cash direct to your wallet"
         round
-        onChange={(value) => {
-          const isChecked = value.checked;
+        onDataChange={(name: string, checked: boolean) => {
+          const isChecked = checked;
           // do whatever you want with isChecked value
-          !isChecked && setReffProgram(true);
-        }} icon={undefined} background={undefined} />
+          isChecked && setReffProgram(ReffProgram.SUBSCRIBED);
+        }}
+        icon={undefined}
+        background={undefined}
+      />
 
       <Checkbox
-        checked={!reffProgram}
+        checked={reffProgram === ReffProgram.UNSUBSCRIBED}
         label="no"
         hint="so cute, dude"
         round
-        onDataChange={(value) => {
-          const isChecked = value.checked;
+        onDataChange={(name: string, checked: boolean) => {
+          const isChecked = checked;
           // do whatever you want with isChecked value
-          !isChecked && setReffProgram(false);
-        }} icon={undefined} background={undefined} />
+          isChecked && setReffProgram(ReffProgram.UNSUBSCRIBED);
+        }}
+        icon={undefined}
+        background={undefined}
+      />
     </>
   );
 };

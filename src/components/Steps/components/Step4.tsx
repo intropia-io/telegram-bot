@@ -65,36 +65,36 @@ const Step4 = () => {
   }, [setTitle]);
 
   const handleChange = useCallback(
-    (value) => {
-      const isChecked = value.checked;
+    (value: string, checked: boolean) => {
+      const isChecked = checked;
       // do whatever you want with isChecked value
       isChecked
-        ? setSelectedEvents(
-          selectedEvents.filter((name) => value.name !== name)
-        )
-        : setSelectedEvents((prev) => [...prev, value.name]);
+        ? setSelectedEvents((prev) => [...prev, value])
+        : setSelectedEvents(selectedEvents.filter((id) => value !== id));
     },
     [selectedEvents]
   );
+  console.log(selectedEvents);
 
   return (
     <>
       <AssistContainer>
-        Time to be impressed!
-        <br />
-        Use our calendar for your upskill...
+        <>
+          Time to be impressed!
+          <br />
+          Use our calendar for your upskill...
+        </>
       </AssistContainer>
 
       {typesData.eventsTypes.map((event, index) => (
         <Checkbox
           key={index}
-          name={event.name}
+          name={event.id}
           label={event.name}
           hint={event.description}
-          checked={selectedEvents.includes(event.name)}
-          onDataChange={(value) => {
-            handleChange(value);
-          }} icon={undefined} background={undefined} round={undefined} />
+          checked={selectedEvents.includes(event.id)}
+          onDataChange={handleChange}
+        />
       ))}
     </>
   );
