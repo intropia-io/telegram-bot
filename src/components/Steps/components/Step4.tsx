@@ -74,7 +74,6 @@ const Step4 = () => {
     },
     [selectedEvents]
   );
-  console.log(selectedEvents);
 
   return (
     <>

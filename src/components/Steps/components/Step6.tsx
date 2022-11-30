@@ -23,8 +23,6 @@ const Step6 = () => {
     formData.updateFrequency
   );
 
-  console.log(updateFrequency);
-
   const { tg } = useTelegram();
 
   const step = useStepData();
