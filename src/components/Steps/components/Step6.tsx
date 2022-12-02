@@ -24,15 +24,12 @@ const Step6 = () => {
     formData.updateFrequency
   );
 
-  const { tg, user, Tg } = useTelegram();
+  const { tg, user } = useTelegram();
 
   const step = useStepData();
   const setStep = useSetStep();
 
   const finish = useCallback(async () => {
-
-    console.log(tg)
-    console.log(Tg) 
 
     if (user && user.id) {
       const formBody: BotSubscriptionPost = {
