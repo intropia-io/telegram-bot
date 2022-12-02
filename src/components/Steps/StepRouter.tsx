@@ -36,7 +36,7 @@ const StepRouter = () => {
     }
   }, [step]);
 
-  console.log(tg)
+  console.log(tg.initDataUnsafe)
 
   return (
     <>
