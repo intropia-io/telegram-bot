@@ -30,7 +30,7 @@ export enum UpdateFrequency {
 
 export interface BotSubscriptionPost {
   userId: string;
-  fisrtName: string;
+  firstName: string;
   lastName: string;
   username: string;
   dynasty: string[];

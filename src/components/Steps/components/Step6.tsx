@@ -35,7 +35,7 @@ const Step6 = () => {
     if (user && user.id) {
       const formBody: BotSubscriptionPost = {
         userId: user.id.toString(),
-        fisrtName: user.first_name as string,
+        firstName: user.first_name as string,
         lastName: user.last_name as string,
         username: user.username as string,
         dynasty: formData.dynasty,
