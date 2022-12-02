@@ -33,6 +33,7 @@ const Step6 = () => {
     const { user } = tg.initDataUnsafe;
 
     console.log(tg)
+    console.log((tg as any).initData()) 
 
     if (user && user.id) {
       const formBody: BotSubscriptionPost = {
