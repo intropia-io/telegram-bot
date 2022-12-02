@@ -46,7 +46,7 @@ const Step6 = () => {
 
       axios.defaults.headers.common[
         "Authorization"
-      ] = `Basic ${process.env.BASIC_AUTH_CODE}`;
+      ] = `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`;
 
       await axios
         .post(`https://rest.tr3butor.io/api/subscription/create`, formBody)
