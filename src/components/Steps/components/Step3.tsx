@@ -18,7 +18,7 @@ const Step3 = () => {
   const typesData = useTypesData();
 
   const [selectedQuests, setSelectedQuests] = useState<string[]>(
-    formData.quests || []
+    formData.questTypes || []
   );
 
   const { tg } = useTelegram();
@@ -28,7 +28,7 @@ const Step3 = () => {
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
-      setForm((prev) => ({ ...prev, quests: selectedQuests }));
+      setForm((prev) => ({ ...prev, questTypes: selectedQuests }));
 
       setStep(step + 1);
     }

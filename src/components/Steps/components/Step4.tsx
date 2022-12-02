@@ -15,7 +15,9 @@ const Step4 = () => {
   const setForm = useSetForm();
   const typesData = useTypesData();
 
-  const [selectedEvents, setSelectedEvents] = useState(formData.events || []);
+  const [selectedEvents, setSelectedEvents] = useState(
+    formData.eventTypes || []
+  );
 
   const { tg } = useTelegram();
 
@@ -26,7 +28,7 @@ const Step4 = () => {
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
-      setForm((prev) => ({ ...prev, events: selectedEvents }));
+      setForm((prev) => ({ ...prev, eventTypes: selectedEvents }));
       setStep(step + 1);
     }
   }, [step, setStep, setForm, selectedEvents]);

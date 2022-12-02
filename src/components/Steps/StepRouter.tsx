@@ -10,12 +10,10 @@ import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Step5 from "./components/Step5";
 import Step6 from "./components/Step6";
-import { useTelegram } from "hooks/useTelegram";
 
 const StepRouter = () => {
   const step = useStepData();
   const title = useTitleData();
-  const {tg} = useTelegram();
 
   const stepComponent = useMemo(() => {
     switch (step) {
@@ -35,8 +33,6 @@ const StepRouter = () => {
         return <h2>{step}</h2>;
     }
   }, [step]);
-
-  console.log(tg.initDataUnsafe)
 
   return (
     <>

@@ -3,8 +3,8 @@ import { atom, useRecoilValue, useSetRecoilState } from "recoil";
 
 const initialState = {
   dynasty: [] as string[],
-  quests: [] as string[],
-  events: [] as string[],
+  questTypes: [] as string[],
+  eventTypes: [] as string[],
   reffProgram: ReffProgram.SUBSCRIBED,
   updateFrequency: UpdateFrequency.REALTIME,
 };

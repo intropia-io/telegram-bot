@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
 
 import { useFormData, useSetForm } from "state/formState";
 import { useSetStep, useStepData } from "state/stepState";
@@ -9,7 +10,7 @@ import ModalContainer from "components/ModalContainer/ModalContainer";
 import { useTelegram } from "hooks/useTelegram";
 
 import Checkbox from "components/Checkbox/Checkbox";
-import { UpdateFrequency } from "helper/enum";
+import { BotSubscriptionPost, UpdateFrequency } from "helper/enum";
 
 const CheckedBadge: string = require("assets/svg/checkedBadge.svg").default;
 
@@ -29,8 +30,33 @@ const Step6 = () => {
   const setStep = useSetStep();
 
   const finish = useCallback(() => {
-    tg.sendData(JSON.stringify(formData));
-    tg.close();
+    const { user } = tg.initDataUnsafe;
+
+    if (user && user.id) {
+      const formBody: BotSubscriptionPost = {
+        userId: user.id.toString(),
+        fisrtName: user.first_name as string,
+        lastName: user.last_name as string,
+        username: user.username as string,
+        dynasty: formData.dynasty,
+        questTypes: formData.questTypes,
+        eventTypes: formData.eventTypes,
+        reffProgram: formData.reffProgram,
+        updateFrequency: formData.updateFrequency,
+      };
+
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Basic ${process.env.BASIC_AUTH_CODE}`;
+
+      axios
+        .post(`https://rest.tr3butor.io/api/subscription/create`, formBody)
+        .then((res) => {
+          // tg.sendData(JSON.stringify(formData));
+          // tg.close();
+        })
+        .catch((e) => console.error(e));
+    }
   }, [tg, formData]);
 
   const prevStep = useCallback(() => {
