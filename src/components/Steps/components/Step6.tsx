@@ -51,7 +51,6 @@ const Step6 = () => {
       await axios
         .post(`https://rest.tr3butor.io/api/subscription/create`, formBody)
         .then((res) => {
-          tg.sendData(JSON.stringify(formData));
           tg.close();
         })
         .catch((e) => console.error(e));
