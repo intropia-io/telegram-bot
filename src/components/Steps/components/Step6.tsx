@@ -50,7 +50,7 @@ const Step6 = () => {
           "Authorization": `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`
         },
         body: JSON.stringify(formBody),
-      });
+      }).then(() => tg.close());
 
     }
   }, [tg, formData]);
