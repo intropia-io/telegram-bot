@@ -27,3 +27,15 @@ export enum UpdateFrequency {
   WEEKLY = "WEEKLY",
   REALTIME = "REALTIME",
 }
+
+export interface BotSubscriptionPost {
+  userId: string;
+  fisrtName: string;
+  lastName: string;
+  username: string;
+  dynasty: string[];
+  questTypes: string[];
+  eventTypes: string[];
+  reffProgram: ReffProgram;
+  updateFrequency: UpdateFrequency;
+}
