@@ -29,8 +29,10 @@ const Step6 = () => {
   const step = useStepData();
   const setStep = useSetStep();
 
-  const finish = useCallback(() => {
+  const finish = useCallback(async () => {
     const { user } = tg.initDataUnsafe;
+
+    console.log(user)
 
     if (user && user.id) {
       const formBody: BotSubscriptionPost = {
@@ -49,7 +51,7 @@ const Step6 = () => {
         "Authorization"
       ] = `Basic ${process.env.BASIC_AUTH_CODE}`;
 
-      axios
+      await axios
         .post(`https://rest.tr3butor.io/api/subscription/create`, formBody)
         .then((res) => {
           // tg.sendData(JSON.stringify(formData));
