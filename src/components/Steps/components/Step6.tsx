@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import axios from "axios";
 
 import { useFormData, useSetForm } from "state/formState";
 import { useSetStep, useStepData } from "state/stepState";
@@ -44,16 +43,15 @@ const Step6 = () => {
         updateFrequency: formData.updateFrequency,
       };
 
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`;
+      await fetch("https://rest.tr3butor.io/api/subscription/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`
+        },
+        body: JSON.stringify(formBody),
+      });
 
-      await axios
-        .post(`https://rest.tr3butor.io/api/subscription/create`, formBody)
-        .then((res) => {
-          tg.close();
-        })
-        .catch((e) => console.error(e));
     }
   }, [tg, formData]);
 
