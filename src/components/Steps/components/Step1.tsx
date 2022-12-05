@@ -5,6 +5,7 @@ import { useSetDynasty } from "state/dynastyState";
 import { maxStepLength, useSetStep, useStepData } from "state/stepState";
 import { useSetTitle } from "state/titleState";
 import { useSetTypes } from "state/typesState";
+import { useSetAssistContainer } from "state/assistContainerState";
 
 import ModalContainer from "components/ModalContainer/ModalContainer";
 
@@ -22,6 +23,7 @@ const Step1 = () => {
   const setTitle = useSetTitle();
   const setTypes = useSetTypes();
   const setDynasty = useSetDynasty();
+  const setAssistContainer = useSetAssistContainer();
 
   const [speechlines, setSpeechlines] = useState([line1]);
 
@@ -85,8 +87,9 @@ const Step1 = () => {
 
   useEffect(() => {
     setTitle("Welcome");
+    setAssistContainer((prev) => ({ ...prev, visible: false }));
     tg.BackButton.hide();
-  }, [tg, setTitle]);
+  }, [tg, setTitle, setAssistContainer]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStep);

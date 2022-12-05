@@ -1,8 +1,10 @@
 import React, { useMemo } from "react";
 import { useStepData } from "state/stepState";
 import { useTitleData } from "state/titleState";
+import { useAssistContainerData } from "state/assistContainerState";
 
 import StepNavigator from "components/StepNavigator/StepNavigator";
+import AssistContainer from "components/AssistContainer/AssistContainer";
 
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
@@ -14,6 +16,7 @@ import Step6 from "./components/Step6";
 const StepRouter = () => {
   const step = useStepData();
   const title = useTitleData();
+  const { visible, content } = useAssistContainerData();
 
   const stepComponent = useMemo(() => {
     switch (step) {
@@ -37,6 +40,7 @@ const StepRouter = () => {
   return (
     <>
       <StepNavigator title={title} className={undefined} />
+      {visible && <AssistContainer>{content}</AssistContainer>}
       {stepComponent}
     </>
   );

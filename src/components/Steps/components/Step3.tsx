@@ -4,8 +4,8 @@ import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useTypesData } from "state/typesState";
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
+import { useSetAssistContainer } from "state/assistContainerState";
 
-import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
@@ -15,6 +15,7 @@ const Step3 = () => {
   const setForm = useSetForm();
 
   const setTitle = useSetTitle();
+  const setAssistContainer = useSetAssistContainer();
   const typesData = useTypesData();
 
   const [selectedQuests, setSelectedQuests] = useState<string[]>(
@@ -59,7 +60,16 @@ const Step3 = () => {
 
   useEffect(() => {
     setTitle("Opportunities");
-  }, [setTitle]);
+    setAssistContainer({
+      visible: true,
+      content: (
+        <>
+          tr3butor collects all possible oportunities. <br />
+          What is your best match?
+        </>
+      ),
+    });
+  }, [setTitle, setAssistContainer]);
 
   const handleChange = useCallback(
     (value: string, checked: boolean) => {
@@ -74,13 +84,6 @@ const Step3 = () => {
 
   return (
     <>
-      <AssistContainer>
-        <>
-          tr3butor collects all possible oportunities. <br />
-          What is your best match?
-        </>
-      </AssistContainer>
-
       {typesData.questTypes.map((type, index) => (
         <Checkbox
           key={index}

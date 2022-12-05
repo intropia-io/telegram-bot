@@ -5,8 +5,7 @@ import { useDynastyData } from "state/dynastyState";
 
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
-
-import AssistContainer from "components/AssistContainer/AssistContainer";
+import { useSetAssistContainer } from "state/assistContainerState";
 
 import { useTelegram } from "hooks/useTelegram";
 import Checkbox from "components/Checkbox/Checkbox";
@@ -16,6 +15,7 @@ const Step2 = () => {
   const setForm = useSetForm();
 
   const setTitle = useSetTitle();
+  const setAssistContainer = useSetAssistContainer();
   const dynastyData = useDynastyData();
 
   const [selectedDynasty, setSelectedDynasty] = useState<string[]>(
@@ -50,12 +50,21 @@ const Step2 = () => {
 
   useEffect(() => {
     setTitle("Choose your dynasty");
+    setAssistContainer({
+      visible: true,
+      content: (
+        <>
+          We use dynasty instead typical categories. <br />
+          Let’s review who are you (^--^)
+        </>
+      ),
+    });
     tg.MainButton.setParams({
       text: "NEXT",
       color: "#04BEFE",
     });
     tg.BackButton.show();
-  }, [tg, setTitle]);
+  }, [tg, setTitle, setAssistContainer]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", nextStep);
@@ -81,13 +90,6 @@ const Step2 = () => {
 
   return (
     <>
-      <AssistContainer>
-        <>
-          We use dynasty instead typical categories. <br />
-          Let’s review who are you (^--^)
-        </>
-      </AssistContainer>
-
       {dynastyData?.map((dynasty, index) => (
         <Checkbox
           key={index}

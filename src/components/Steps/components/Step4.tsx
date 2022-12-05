@@ -4,8 +4,8 @@ import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
 import { useTypesData } from "state/typesState";
 import { useSetTitle } from "state/titleState";
+import { useSetAssistContainer } from "state/assistContainerState";
 
-import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
@@ -22,6 +22,7 @@ const Step4 = () => {
   const { tg } = useTelegram();
 
   const setTitle = useSetTitle();
+  const setAssistContainer = useSetAssistContainer();
 
   const step = useStepData();
   const setStep = useSetStep();
@@ -64,7 +65,17 @@ const Step4 = () => {
 
   useEffect(() => {
     setTitle("Events");
-  }, [setTitle]);
+    setAssistContainer({
+      visible: true,
+      content: (
+        <>
+          Time to be impressed!
+          <br />
+          Use our calendar for your upskill...
+        </>
+      ),
+    });
+  }, [setTitle, setAssistContainer]);
 
   const handleChange = useCallback(
     (value: string, checked: boolean) => {
@@ -79,14 +90,6 @@ const Step4 = () => {
 
   return (
     <>
-      <AssistContainer>
-        <>
-          Time to be impressed!
-          <br />
-          Use our calendar for your upskill...
-        </>
-      </AssistContainer>
-
       {typesData.eventsTypes.map((event, index) => (
         <Checkbox
           key={index}

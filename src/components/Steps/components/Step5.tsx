@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 import { maxStepLength, useSetStep, useStepData } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
 import { useSetTitle } from "state/titleState";
+import { useSetAssistContainer } from "state/assistContainerState";
 
-import AssistContainer from "components/AssistContainer/AssistContainer";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
@@ -24,6 +24,7 @@ const Step5 = () => {
 
   const step = useStepData();
   const setStep = useSetStep();
+  const setAssistContainer = useSetAssistContainer();
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
@@ -56,18 +57,20 @@ const Step5 = () => {
 
   useEffect(() => {
     setTitle("Referral program");
-  }, [setTitle]);
-
-  return (
-    <>
-      <AssistContainer>
+    setAssistContainer({
+      visible: true,
+      content: (
         <>
           tr3butor has a powerful referral program! <br />
           Real reward for your candidate! <br />
           Are you interested in?
         </>
-      </AssistContainer>
+      ),
+    });
+  }, [setTitle, setAssistContainer]);
 
+  return (
+    <>
       <Checkbox
         checked={reffProgram === ReffProgram.SUBSCRIBED}
         label="yes, reward is cool!"

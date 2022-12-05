@@ -10,6 +10,7 @@ import { useTelegram } from "hooks/useTelegram";
 
 import Checkbox from "components/Checkbox/Checkbox";
 import { BotSubscriptionPost, UpdateFrequency } from "helper/enum";
+import { useSetAssistContainer } from "state/assistContainerState";
 
 const CheckedBadge: string = require("assets/svg/checkedBadge.svg").default;
 
@@ -18,6 +19,7 @@ const Step6 = () => {
   const setForm = useSetForm();
 
   const setTitle = useSetTitle();
+  const setAssistContainer = useSetAssistContainer();
 
   const [updateFrequency, setUpdateFrequency] = useState<UpdateFrequency>(
     formData.updateFrequency
@@ -29,7 +31,6 @@ const Step6 = () => {
   const setStep = useSetStep();
 
   const finish = useCallback(async () => {
-
     if (user && user.id) {
       const formBody: BotSubscriptionPost = {
         userId: user.id.toString(),
@@ -47,13 +48,12 @@ const Step6 = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`
+          Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
         },
         body: JSON.stringify(formBody),
       }).then(() => tg.close());
-
     }
-  }, [tg, formData]);
+  }, [tg, formData, user]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
@@ -71,6 +71,7 @@ const Step6 = () => {
       text: "Save",
       color: "#04BEFE",
     });
+    setAssistContainer((prev) => ({ ...prev, visible: false }));
     // eslint-disable-next-line
   }, []);
 
