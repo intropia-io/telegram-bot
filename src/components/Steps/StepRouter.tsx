@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useStepData } from "state/stepState";
 import { useTitleData } from "state/titleState";
 import { useAssistContainerData } from "state/assistContainerState";
@@ -12,11 +12,17 @@ import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Step5 from "./components/Step5";
 import Step6 from "./components/Step6";
+import axios from "axios";
+import { useSetDynasty } from "state/dynastyState";
+import { useSetTypes } from "state/typesState";
+import { CategoryType, Type } from "helper/enum";
 
 const StepRouter = () => {
   const step = useStepData();
   const title = useTitleData();
   const { visible, content } = useAssistContainerData();
+  const setTypes = useSetTypes();
+  const setDynasty = useSetDynasty();
 
   const stepComponent = useMemo(() => {
     switch (step) {
@@ -36,6 +42,31 @@ const StepRouter = () => {
         return <h2>{step}</h2>;
     }
   }, [step]);
+
+  useEffect(() => {
+    axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
+      const types = res.data;
+      const questTypes: Type[] = [];
+      const eventsTypes: Type[] = [];
+      types.forEach((type: Type) => {
+        if (type.categoryType === CategoryType.QUEST) {
+          questTypes.push(type);
+        } else if (type.categoryType === CategoryType.EVENT) {
+          eventsTypes.push(type);
+        }
+      });
+      setTypes({ questTypes: questTypes, eventsTypes: eventsTypes });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    axios.get(`https://rest.tr3butor.io/api/dynasty`).then((res) => {
+      const dynasty = res.data;
+      setDynasty(dynasty);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
