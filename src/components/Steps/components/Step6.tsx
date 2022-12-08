@@ -87,15 +87,21 @@ const Step6 = () => {
   return (
     <>
       <ModalContainer>
-        <div>
-          <img
-            style={{ width: 40, margin: "0 auto" }}
-            src={CheckedBadge}
-            alt="checked"
-          />
-          <p>All done! You can change update frequency:</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <img style={{ width: 40 }} src={CheckedBadge} alt="checked" />
+          <p>All done!</p>
         </div>
       </ModalContainer>
+
+      <p style={{ margin: "0 auto", fontWeight: 500 }}>
+        You can change update frequency:
+      </p>
 
       <div
         style={{
