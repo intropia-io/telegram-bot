@@ -24,6 +24,7 @@ const Step1 = () => {
   }, [step, setStep]);
 
   useEffect(() => {
+    tg.MainButton.show();
     tg.MainButton.setParams({
       text: "NEXT",
       color: "#04BEFE",
