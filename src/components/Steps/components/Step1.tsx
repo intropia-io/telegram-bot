@@ -12,9 +12,8 @@ const Step1 = () => {
   const setTitle = useSetTitle();
   const setAssistContainer = useSetAssistContainer();
 
-  const { tg, user } = useTelegram();
+  const { tg } = useTelegram();
 
-  console.log(user)
   const step = useStepData();
   const setStep = useSetStep();
 

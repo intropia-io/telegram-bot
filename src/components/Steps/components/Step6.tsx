@@ -113,7 +113,7 @@ const Step6 = () => {
       >
         <Checkbox
           checked={updateFrequency === UpdateFrequency.REALTIME}
-          label="real time updates"
+          label="real time"
           background
           round
           onDataChange={(name: string, checked: boolean) => {
@@ -124,7 +124,7 @@ const Step6 = () => {
 
         <Checkbox
           checked={updateFrequency === UpdateFrequency.WEEKLY}
-          label="weekly compilation"
+          label="weekly"
           background
           round
           onDataChange={(name: string, checked: boolean) => {
