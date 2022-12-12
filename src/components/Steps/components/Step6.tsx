@@ -171,8 +171,6 @@ const Step6 = () => {
           }}
           hint={""}
         />
-
-        <button onClick={finish}>test</button>
       </div>
     </>
   );
