@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Checkbox.css";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -29,7 +29,7 @@ const Checkbox: React.FC<Props> = ({
     <div
       onClick={() => {
         onDataChange && onDataChange(props.name!, !isChecked);
-        setIsChecked((prev) => !prev);
+        !round && setIsChecked((prev) => !prev);
       }}
       className={`checkbox-wrapper ${isChecked || background ? "checked" : ""}`}
     >

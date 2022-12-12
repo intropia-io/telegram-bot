@@ -30,13 +30,17 @@ const Step6 = () => {
     formData.updateFrequency
   );
 
+  const [disabled, setDisabled] = useState<boolean>(false)
+
   const { tg, user } = useTelegram();
 
   const step = useStepData();
   const setStep = useSetStep();
 
   const finish = useCallback(async () => {
-    if (user && user.id) {
+    if (user && user.id && !disabled) {
+      setDisabled(true);
+      
       const formBody: BotSubscriptionPost = {
         userId: user.id.toString(),
         firstName: user.first_name as string,
@@ -69,8 +73,8 @@ const Step6 = () => {
         },
         body: JSON.stringify(formBody),
       })
-        .then(() =>
-          fetch("https://tgserver.tr3butor.io/send_feed", {
+        .then(async () =>
+          await fetch("https://tgserver.tr3butor.io/send_feed", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -89,8 +93,10 @@ const Step6 = () => {
         )
         .finally(() => tg.close())
         .catch((e) => console.error(e));
+
+        setDisabled(false)
     }
-  }, [tg, formData, user, dynastyData, typesData]);
+  }, [tg, formData, user, dynastyData, typesData, disabled]);
 
   const prevStep = useCallback(() => {
     if (step > 1) {
