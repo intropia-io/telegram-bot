@@ -87,7 +87,8 @@ const Step6 = () => {
             }),
           })
         )
-        tg.close();
+        .finally(() => tg.close())
+        .catch((e) => console.error(e));
     }
   }, [tg, formData, user, dynastyData, typesData]);
 
