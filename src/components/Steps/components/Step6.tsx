@@ -61,15 +61,15 @@ const Step6 = () => {
         .filter((eventType) => formData.eventTypes.includes(eventType.id))
         .map((eventType) => eventType.name);
 
-      try {
-        await fetch("https://rest.tr3butor.io/api/subscription/create", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
-          },
-          body: JSON.stringify(formBody),
-        }).then(() =>
+      await fetch("https://rest.tr3butor.io/api/subscription/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
+        },
+        body: JSON.stringify(formBody),
+      })
+        .then(() =>
           fetch("https://tgserver.tr3butor.io/send_feed", {
             method: "POST",
             headers: {
@@ -86,10 +86,8 @@ const Step6 = () => {
               },
             }),
           })
-        ).then(() => tg.close());
-      } catch (e) {
-        console.error(e);
-      }
+        )
+        .finally(() => tg.close());
     }
   }, [tg, formData, user, dynastyData, typesData]);
 
