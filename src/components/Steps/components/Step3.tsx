@@ -43,6 +43,10 @@ const Step3 = () => {
 
   useEffect(() => {
     if (selectedQuests.length > 0) {
+      tg.MainButton.setParams({
+        text: "SAVE",
+        color: "#04BEFE",
+      });
       tg.MainButton.show();
     } else {
       tg.MainButton.hide();
@@ -62,12 +66,7 @@ const Step3 = () => {
     setTitle("Opportunities");
     setAssistContainer({
       visible: true,
-      content: (
-        <>
-          tr3butor collects all possible oportunities. <br />
-          What is your best match?
-        </>
-      ),
+      content: <>Choose your challenge and kick off your web3 career:</>,
     });
   }, [setTitle, setAssistContainer]);
 

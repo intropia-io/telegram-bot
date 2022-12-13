@@ -52,10 +52,14 @@ const Step1 = () => {
   return (
     <ModalContainer>
       <div>
-        <p>Hey:) I’m Spike, tr3butor assistant.</p>
+        <p>
+          Hey there! I'm Spike. I’d like to know more about you
+          <br />
+          so I can provide your with the most relevant offers.
+        </p>
       </div>
       <div>
-        <p>I’ll help you to customize web3 opportunity feed</p>
+        <p>Let’s get started. It will only take a minute.</p>
       </div>
     </ModalContainer>
   );

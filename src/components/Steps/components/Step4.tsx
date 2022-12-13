@@ -43,7 +43,7 @@ const Step4 = () => {
   useEffect(() => {
     if (selectedEvents.length > 0) {
       tg.MainButton.setParams({
-        text: "NEXT",
+        text: "SAVE",
         color: "#04BEFE",
       });
     } else {
@@ -68,11 +68,7 @@ const Step4 = () => {
     setAssistContainer({
       visible: true,
       content: (
-        <>
-          Time to be impressed!
-          <br />
-          Use our calendar for your upskill...
-        </>
+        <>Discover exciting Web3 events and connect with the community:</>
       ),
     });
   }, [setTitle, setAssistContainer]);

@@ -54,8 +54,11 @@ const Step2 = () => {
       visible: true,
       content: (
         <>
-          We use dynasty instead typical categories. <br />
-          Let’s review who are you (^--^)
+          On our platform, we use the term "dynasties" to refer to skillsets or
+          areas of expertise. <br />
+          <br />
+          Please select your dynasties to help us match you with relevant
+          opportunities:
         </>
       ),
     });

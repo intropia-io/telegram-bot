@@ -41,7 +41,7 @@ const Step5 = () => {
 
   useEffect(() => {
     tg.MainButton.setParams({
-      text: "NEXT",
+      text: "SAVE",
       color: "#04BEFE",
     });
   }, [tg]);
@@ -56,14 +56,13 @@ const Step5 = () => {
   }, [nextStep, prevStep, tg]);
 
   useEffect(() => {
-    setTitle("Referral program");
+    setTitle("Referral recruitment");
     setAssistContainer({
       visible: true,
       content: (
         <>
-          tr3butor has a powerful referral program! <br />
-          Real reward for your candidate! <br />
-          Are you interested in?
+          Help your favorite projects find the perfect candidate! Earn hefty
+          rewards by referring your friends!
         </>
       ),
     });
@@ -74,7 +73,7 @@ const Step5 = () => {
       <Checkbox
         checked={reffProgram === ReffProgram.SUBSCRIBED}
         label="yes, reward is cool!"
-        hint="oh yeah, real cash direct to your wallet"
+        hint="I'll be rewarded for bringing in talent"
         round
         onDataChange={(name: string, checked: boolean) => {
           const isChecked = checked;
@@ -88,7 +87,7 @@ const Step5 = () => {
       <Checkbox
         checked={reffProgram === ReffProgram.UNSUBSCRIBED}
         label="no"
-        hint="so cute, dude"
+        hint="everyone I know is already employed"
         round
         onDataChange={(name: string, checked: boolean) => {
           const isChecked = checked;

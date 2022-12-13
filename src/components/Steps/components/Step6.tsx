@@ -30,7 +30,7 @@ const Step6 = () => {
     formData.updateFrequency
   );
 
-  const [disabled, setDisabled] = useState<boolean>(false)
+  const [disabled, setDisabled] = useState<boolean>(false);
 
   const { tg, user } = useTelegram();
 
@@ -40,7 +40,7 @@ const Step6 = () => {
   const finish = useCallback(async () => {
     if (user && user.id && !disabled) {
       setDisabled(true);
-      
+
       const formBody: BotSubscriptionPost = {
         userId: user.id.toString(),
         firstName: user.first_name as string,
@@ -73,28 +73,29 @@ const Step6 = () => {
         },
         body: JSON.stringify(formBody),
       })
-        .then(async () =>
-          await fetch("https://tgserver.tr3butor.io/send_feed", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              dynasty: selectedDynastyName,
-              questTypes: selectedQuestTypesName,
-              eventTypes: selectedEventTypesName,
-              reffProgram: formData.reffProgram,
-              updateFrequency: formData.updateFrequency,
-              user: {
-                userId: user.id,
+        .then(
+          async () =>
+            await fetch("https://tgserver.tr3butor.io/send_feed", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
               },
-            }),
-          })
+              body: JSON.stringify({
+                dynasty: selectedDynastyName,
+                questTypes: selectedQuestTypesName,
+                eventTypes: selectedEventTypesName,
+                reffProgram: formData.reffProgram,
+                updateFrequency: formData.updateFrequency,
+                user: {
+                  userId: user.id,
+                },
+              }),
+            })
         )
         .finally(() => tg.close())
         .catch((e) => console.error(e));
 
-        setDisabled(false)
+      setDisabled(false);
     }
   }, [tg, formData, user, dynastyData, typesData, disabled]);
 
@@ -109,9 +110,9 @@ const Step6 = () => {
   }, [updateFrequency, setForm]);
 
   useEffect(() => {
-    setTitle("All done");
+    setTitle("Great job! You're all set.");
     tg.MainButton.setParams({
-      text: "Save",
+      text: "SAVE",
       color: "#04BEFE",
     });
     setAssistContainer((prev) => ({ ...prev, visible: false }));
@@ -143,7 +144,7 @@ const Step6 = () => {
       </ModalContainer>
 
       <p style={{ margin: "0 auto", fontWeight: 500 }}>
-        You can change update frequency:
+        Choose your notification frequency:
       </p>
 
       <div
@@ -156,7 +157,7 @@ const Step6 = () => {
       >
         <Checkbox
           checked={updateFrequency === UpdateFrequency.REALTIME}
-          label="real time"
+          label="in real-time"
           background
           round
           onDataChange={(name: string, checked: boolean) => {
