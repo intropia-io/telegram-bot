@@ -54,7 +54,6 @@ const Step1 = () => {
       <div>
         <p>
           Hey there! I'm Spike. I’d like to know more about you
-          <br />
           so I can provide your with the most relevant offers.
         </p>
       </div>
