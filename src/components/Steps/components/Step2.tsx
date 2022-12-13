@@ -63,7 +63,7 @@ const Step2 = () => {
       ),
     });
     tg.MainButton.setParams({
-      text: "NEXT",
+      text: "SAVE",
       color: "#04BEFE",
     });
     tg.BackButton.show();
