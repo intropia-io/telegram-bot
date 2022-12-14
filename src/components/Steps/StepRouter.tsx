@@ -57,6 +57,7 @@ const StepRouter = () => {
         Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
       },
     }).then((res) => {
+      console.log(res)
       const selectedDynasty = (res as any).dynasties.map(
         (dynasty: { id: string }) => dynasty.id
       );
