@@ -92,7 +92,7 @@ const Step6 = () => {
               }),
             })
         )
-        .finally(() => 
+        .finally(() => {}
                  //tg.close()
                 )
         .catch((e) => console.error(e));
