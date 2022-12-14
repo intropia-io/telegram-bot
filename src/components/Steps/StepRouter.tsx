@@ -56,33 +56,33 @@ const StepRouter = () => {
         "Content-Type": "application/json",
         Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
       },
-    }).then((res) => {
-      return res.json();
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const selectedDynasty = (data as any).dynasties.map(
+          (dynasty: { id: string }) => dynasty.id
+        );
+        const selectedQuestTypes = (data as any).questTypes.map(
+          (quest: { id: string }) => quest.id
+        );
 
-      // const selectedDynasty = (res as any).dynasties.map(
-      //   (dynasty: { id: string }) => dynasty.id
-      // );
-      // const selectedQuestTypes = (res as any).questTypes.map(
-      //   (quest: { id: string }) => quest.id
-      // );
+        const selectedEventTypes = (data as any).eventTypes.map(
+          (event: { id: string }) => event.id
+        );
 
-      // const selectedEventTypes = (res as any).eventTypes.map(
-      //   (event: { id: string }) => event.id
-      // );
-
-      // setForm({
-      //   dynasty: selectedDynasty,
-      //   questTypes: selectedQuestTypes,
-      //   eventTypes: selectedEventTypes,
-      //   reffProgram:
-      //     (res as any).reffProgram === ReffProgram.SUBSCRIBED
-      //       ? ReffProgram.SUBSCRIBED
-      //       : ReffProgram.UNSUBSCRIBED,
-      //   updateFrequency: (res as any).updateFrequency
-      //     ? UpdateFrequency.REALTIME
-      //     : UpdateFrequency.WEEKLY,
-      // });
-    }).then(data => console.log(data));
+        setForm({
+          dynasty: selectedDynasty,
+          questTypes: selectedQuestTypes,
+          eventTypes: selectedEventTypes,
+          reffProgram:
+            (data as any).reffProgram === ReffProgram.SUBSCRIBED
+              ? ReffProgram.SUBSCRIBED
+              : ReffProgram.UNSUBSCRIBED,
+          updateFrequency: (data as any).updateFrequency
+            ? UpdateFrequency.REALTIME
+            : UpdateFrequency.WEEKLY,
+        });
+      });
   }, []);
 
   useEffect(() => {
