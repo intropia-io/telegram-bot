@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import  { useEffect, useMemo } from "react";
 import { useStepData } from "state/stepState";
 import { useTitleData } from "state/titleState";
 import { useAssistContainerData } from "state/assistContainerState";
@@ -16,6 +16,7 @@ import axios from "axios";
 import { useSetDynasty } from "state/dynastyState";
 import { useSetTypes } from "state/typesState";
 import { CategoryType, Type } from "helper/enum";
+import { useTelegram } from "hooks/useTelegram";
 
 const StepRouter = () => {
   const step = useStepData();
@@ -23,6 +24,8 @@ const StepRouter = () => {
   const { visible, content } = useAssistContainerData();
   const setTypes = useSetTypes();
   const setDynasty = useSetDynasty();
+
+  const { user } = useTelegram();
 
   const stepComponent = useMemo(() => {
     switch (step) {
@@ -42,6 +45,16 @@ const StepRouter = () => {
         return <h2>{step}</h2>;
     }
   }, [step]);
+
+  useEffect(() => {
+    fetch(`https://rest.tr3butor.io/api/subscription/${user?.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
+      },
+    }).then((res) => console.log(res));
+  }, []);
 
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {

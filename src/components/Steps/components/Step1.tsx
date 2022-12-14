@@ -53,8 +53,8 @@ const Step1 = () => {
     <ModalContainer>
       <div>
         <p>
-          Hey there! I'm Spike. I’d like to know more about you
-          so I can provide your with the most relevant offers.
+          Hey there! I'm Spike. I’d like to know more about you so I can provide
+          your with the most relevant offers.
         </p>
       </div>
       <div>
