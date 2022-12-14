@@ -1,4 +1,6 @@
 import { useEffect, useMemo } from "react";
+import axios from "axios";
+
 import { useStepData } from "state/stepState";
 import { useTitleData } from "state/titleState";
 import { useAssistContainerData } from "state/assistContainerState";
@@ -6,18 +8,18 @@ import { useAssistContainerData } from "state/assistContainerState";
 import StepNavigator from "components/StepNavigator/StepNavigator";
 import AssistContainer from "components/AssistContainer/AssistContainer";
 
+import { useSetDynasty } from "state/dynastyState";
+import { useSetTypes } from "state/typesState";
+import { CategoryType, ReffProgram, Type, UpdateFrequency } from "helper/enum";
+import { useTelegram } from "hooks/useTelegram";
+import { useSetForm } from "state/formState";
+
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Step5 from "./components/Step5";
 import Step6 from "./components/Step6";
-import axios from "axios";
-import { useSetDynasty } from "state/dynastyState";
-import { useSetTypes } from "state/typesState";
-import { CategoryType, ReffProgram, Type, UpdateFrequency } from "helper/enum";
-import { useTelegram } from "hooks/useTelegram";
-import { useSetForm } from "state/formState";
 
 const StepRouter = () => {
   const step = useStepData();
@@ -50,6 +52,8 @@ const StepRouter = () => {
   }, [step]);
 
   useEffect(() => {
+    if (!user?.id) return;
+
     fetch(`https://rest.tr3butor.io/api/subscription/${user?.id}`, {
       method: "GET",
       headers: {
@@ -58,32 +62,41 @@ const StepRouter = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        const selectedDynasty = (data as any).dynasties.map(
-          (dynasty: { id: string }) => dynasty.id
-        );
-        const selectedQuestTypes = (data as any).questTypes.map(
-          (quest: { id: string }) => quest.id
-        );
+      .then(
+        (data: {
+          dynasties: {
+            id: string;
+          }[];
+          questTypes: {
+            id: string;
+          }[];
+          eventTypes: {
+            id: string;
+          }[];
+          reffProgram: ReffProgram;
+          updateFrequency: UpdateFrequency;
+        }) => {
+          const selectedDynasty = data.dynasties.map(
+            (dynasty: { id: string }) => dynasty.id
+          );
+          const selectedQuestTypes = data.questTypes.map(
+            (quest: { id: string }) => quest.id
+          );
 
-        const selectedEventTypes = (data as any).eventTypes.map(
-          (event: { id: string }) => event.id
-        );
+          const selectedEventTypes = data.eventTypes.map(
+            (event: { id: string }) => event.id
+          );
 
-        setForm({
-          dynasty: selectedDynasty,
-          questTypes: selectedQuestTypes,
-          eventTypes: selectedEventTypes,
-          reffProgram:
-            (data as any).reffProgram === ReffProgram.SUBSCRIBED
-              ? ReffProgram.SUBSCRIBED
-              : ReffProgram.UNSUBSCRIBED,
-          updateFrequency: (data as any).updateFrequency
-            ? UpdateFrequency.REALTIME
-            : UpdateFrequency.WEEKLY,
-        });
-      });
-  }, []);
+          setForm({
+            dynasty: selectedDynasty,
+            questTypes: selectedQuestTypes,
+            eventTypes: selectedEventTypes,
+            reffProgram: data.reffProgram,
+            updateFrequency: data.updateFrequency,
+          });
+        }
+      );
+  }, [setForm, user?.id]);
 
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
