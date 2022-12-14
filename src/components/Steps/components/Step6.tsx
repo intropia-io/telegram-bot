@@ -92,7 +92,7 @@ const Step6 = () => {
               }),
             })
         )
-        // .finally(() => tg.close())
+        .finally(() => tg.close())
         .catch((e) => console.error(e));
 
       setDisabled(false);
