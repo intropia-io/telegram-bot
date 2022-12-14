@@ -49,6 +49,10 @@ const Step2 = () => {
   }, [selectedDynasty, tg]);
 
   useEffect(() => {
+    setSelectedDynasty(formData.dynasty)
+  }, [formData.dynasty])
+
+  useEffect(() => {
     setTitle("Choose your dynasty");
     setAssistContainer({
       visible: true,
