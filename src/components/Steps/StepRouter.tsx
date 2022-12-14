@@ -96,7 +96,7 @@ const StepRouter = () => {
           });
         }
       );
-  }, [setForm, user?.id]);
+  }, [user?.id]);
 
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
