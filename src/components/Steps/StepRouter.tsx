@@ -1,4 +1,4 @@
-import  { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useStepData } from "state/stepState";
 import { useTitleData } from "state/titleState";
 import { useAssistContainerData } from "state/assistContainerState";
@@ -17,6 +17,7 @@ import { useSetDynasty } from "state/dynastyState";
 import { useSetTypes } from "state/typesState";
 import { CategoryType, Type } from "helper/enum";
 import { useTelegram } from "hooks/useTelegram";
+import { useSetForm } from "state/formState";
 
 const StepRouter = () => {
   const step = useStepData();
@@ -24,6 +25,8 @@ const StepRouter = () => {
   const { visible, content } = useAssistContainerData();
   const setTypes = useSetTypes();
   const setDynasty = useSetDynasty();
+
+  const setForm = useSetForm();
 
   const { user } = useTelegram();
 
@@ -53,8 +56,14 @@ const StepRouter = () => {
         "Content-Type": "application/json",
         Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
       },
-    }).then((res) => console.log(res));
-  }, []);
+    }).then((res) => {
+      const { body } = res;
+      const selectedDynasty = (body as any).dynasties.map(
+        (dynasty: { id: string }) => dynasty.id
+      );
+      setForm((prev) => ({ ...prev, dynasty: selectedDynasty }));
+    });
+  }, [setForm, user?.id]);
 
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
