@@ -57,32 +57,33 @@ const StepRouter = () => {
         Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
       },
     }).then((res) => {
-      console.log(res)
-      const selectedDynasty = (res as any).dynasties.map(
-        (dynasty: { id: string }) => dynasty.id
-      );
-      const selectedQuestTypes = (res as any).questTypes.map(
-        (quest: { id: string }) => quest.id
-      );
+      return res.json();
 
-      const selectedEventTypes = (res as any).eventTypes.map(
-        (event: { id: string }) => event.id
-      );
+      // const selectedDynasty = (res as any).dynasties.map(
+      //   (dynasty: { id: string }) => dynasty.id
+      // );
+      // const selectedQuestTypes = (res as any).questTypes.map(
+      //   (quest: { id: string }) => quest.id
+      // );
 
-      setForm({
-        dynasty: selectedDynasty,
-        questTypes: selectedQuestTypes,
-        eventTypes: selectedEventTypes,
-        reffProgram:
-          (res as any).reffProgram === ReffProgram.SUBSCRIBED
-            ? ReffProgram.SUBSCRIBED
-            : ReffProgram.UNSUBSCRIBED,
-        updateFrequency: (res as any).updateFrequency
-          ? UpdateFrequency.REALTIME
-          : UpdateFrequency.WEEKLY,
-      });
-    });
-  }, [setForm, user?.id]);
+      // const selectedEventTypes = (res as any).eventTypes.map(
+      //   (event: { id: string }) => event.id
+      // );
+
+      // setForm({
+      //   dynasty: selectedDynasty,
+      //   questTypes: selectedQuestTypes,
+      //   eventTypes: selectedEventTypes,
+      //   reffProgram:
+      //     (res as any).reffProgram === ReffProgram.SUBSCRIBED
+      //       ? ReffProgram.SUBSCRIBED
+      //       : ReffProgram.UNSUBSCRIBED,
+      //   updateFrequency: (res as any).updateFrequency
+      //     ? UpdateFrequency.REALTIME
+      //     : UpdateFrequency.WEEKLY,
+      // });
+    }).then(data => console.log(data));
+  }, []);
 
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
