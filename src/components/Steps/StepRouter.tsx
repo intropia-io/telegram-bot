@@ -15,7 +15,7 @@ import Step6 from "./components/Step6";
 import axios from "axios";
 import { useSetDynasty } from "state/dynastyState";
 import { useSetTypes } from "state/typesState";
-import { CategoryType, Type } from "helper/enum";
+import { CategoryType, ReffProgram, Type, UpdateFrequency } from "helper/enum";
 import { useTelegram } from "hooks/useTelegram";
 import { useSetForm } from "state/formState";
 
@@ -57,11 +57,29 @@ const StepRouter = () => {
         Authorization: `Basic ${process.env.REACT_APP_BASIC_AUTH_CODE}`,
       },
     }).then((res) => {
-      const { body } = res;
-      const selectedDynasty = (body as any).dynasties.map(
+      const selectedDynasty = (res as any).dynasties.map(
         (dynasty: { id: string }) => dynasty.id
       );
-      setForm((prev) => ({ ...prev, dynasty: selectedDynasty }));
+      const selectedQuestTypes = (res as any).questTypes.map(
+        (quest: { id: string }) => quest.id
+      );
+
+      const selectedEventTypes = (res as any).eventTypes.map(
+        (event: { id: string }) => event.id
+      );
+
+      setForm({
+        dynasty: selectedDynasty,
+        questTypes: selectedQuestTypes,
+        eventTypes: selectedEventTypes,
+        reffProgram:
+          (res as any).reffProgram === ReffProgram.SUBSCRIBED
+            ? ReffProgram.SUBSCRIBED
+            : ReffProgram.UNSUBSCRIBED,
+        updateFrequency: (res as any).updateFrequency
+          ? UpdateFrequency.REALTIME
+          : UpdateFrequency.WEEKLY,
+      });
     });
   }, [setForm, user?.id]);
 
