@@ -45,6 +45,12 @@ const Step2 = () => {
   }, [step, setStep, navigate]);
 
   useEffect(() => {
+    if (step === 1) {
+      navigate('/');
+    }
+  }, [navigate, step])
+
+  useEffect(() => {
     if (selectedDynasty.length > 0) {
       tg.MainButton.show();
     } else {

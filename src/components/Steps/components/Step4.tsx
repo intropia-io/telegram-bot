@@ -45,6 +45,12 @@ const Step4 = () => {
   }, [step, setStep, navigate]);
 
   useEffect(() => {
+    if (step === 1) {
+      navigate('/');
+    }
+  }, [navigate, step])
+
+  useEffect(() => {
     if (selectedEvents.length > 0) {
       tg.MainButton.setParams({
         text: "SAVE",

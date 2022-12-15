@@ -47,6 +47,12 @@ const Step3 = () => {
   }, [step, setStep, navigate]);
 
   useEffect(() => {
+    if (step === 1) {
+      navigate('/');
+    }
+  }, [navigate, step])
+
+  useEffect(() => {
     if (selectedQuests.length > 0) {
       tg.MainButton.setParams({
         text: "SAVE",

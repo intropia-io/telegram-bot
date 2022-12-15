@@ -109,6 +109,12 @@ const Step6 = () => {
   }, [navigate, step, setStep]);
 
   useEffect(() => {
+    if (step === 1) {
+      navigate('/');
+    }
+  }, [navigate, step])
+
+  useEffect(() => {
     setForm((prev) => ({ ...prev, updateFrequency: updateFrequency }));
   }, [updateFrequency, setForm]);
 

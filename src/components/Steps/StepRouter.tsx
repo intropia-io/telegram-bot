@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { RouterProvider, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import router from "router";
 
 import { useTitleData } from "state/titleState";
@@ -24,10 +24,8 @@ const StepRouter = () => {
   const setForm = useSetForm();
 
   const { user } = useTelegram();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/');
     if (!user?.id) return;
 
     fetch(`https://rest.tr3butor.io/api/subscription/${user?.id}`, {
