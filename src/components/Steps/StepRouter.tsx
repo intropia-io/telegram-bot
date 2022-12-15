@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+import { RouterProvider } from "react-router-dom";
+import router from "router";
 
-import { useStepData } from "state/stepState";
 import { useTitleData } from "state/titleState";
 import { useAssistContainerData } from "state/assistContainerState";
 
@@ -14,15 +15,7 @@ import { CategoryType, ReffProgram, Type, UpdateFrequency } from "helper/enum";
 import { useTelegram } from "hooks/useTelegram";
 import { useSetForm } from "state/formState";
 
-import Step1 from "./components/Step1";
-import Step2 from "./components/Step2";
-import Step3 from "./components/Step3";
-import Step4 from "./components/Step4";
-import Step5 from "./components/Step5";
-import Step6 from "./components/Step6";
-
 const StepRouter = () => {
-  const step = useStepData();
   const title = useTitleData();
   const { visible, content } = useAssistContainerData();
   const setTypes = useSetTypes();
@@ -31,25 +24,6 @@ const StepRouter = () => {
   const setForm = useSetForm();
 
   const { user } = useTelegram();
-
-  const stepComponent = useMemo(() => {
-    switch (step) {
-      case 1:
-        return <Step1 />;
-      case 2:
-        return <Step2 />;
-      case 3:
-        return <Step3 />;
-      case 4:
-        return <Step4 />;
-      case 5:
-        return <Step5 />;
-      case 6:
-        return <Step6 />;
-      default:
-        return <h2>{step}</h2>;
-    }
-  }, [step]);
 
   useEffect(() => {
     if (!user?.id) return;
@@ -96,7 +70,8 @@ const StepRouter = () => {
           });
         }
       );
-  }, [user?.id]);
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     axios.get(`https://rest.tr3butor.io/api/type`).then((res) => {
@@ -127,7 +102,7 @@ const StepRouter = () => {
     <>
       <StepNavigator title={title} className={undefined} />
       {visible && <AssistContainer>{content}</AssistContainer>}
-      {stepComponent}
+      <RouterProvider router={router} />
     </>
   );
 };

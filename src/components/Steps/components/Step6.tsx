@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useFormData, useSetForm } from "state/formState";
 import { useSetStep, useStepData } from "state/stepState";
@@ -34,8 +35,10 @@ const Step6 = () => {
 
   const { tg, user } = useTelegram();
 
+  const navigate = useNavigate();
   const step = useStepData();
   const setStep = useSetStep();
+
 
   const finish = useCallback(async () => {
     if (user && user.id && !disabled) {
@@ -102,8 +105,9 @@ const Step6 = () => {
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
+      navigate('/referral')
     }
-  }, [step, setStep]);
+  }, [navigate, step, setStep]);
 
   useEffect(() => {
     setForm((prev) => ({ ...prev, updateFrequency: updateFrequency }));

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
@@ -9,6 +10,7 @@ import { useSetAssistContainer } from "state/assistContainerState";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
+
 
 const Step4 = () => {
   const formData = useFormData();
@@ -24,21 +26,26 @@ const Step4 = () => {
   const setTitle = useSetTitle();
   const setAssistContainer = useSetAssistContainer();
 
+  
   const step = useStepData();
   const setStep = useSetStep();
+  const navigate = useNavigate();
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, eventTypes: selectedEvents }));
       setStep(step + 1);
+      navigate('/referral')
     }
-  }, [step, setStep, setForm, selectedEvents]);
+  }, [step, setStep, setForm, selectedEvents, navigate]);
+
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
+      navigate('/opportunities')
     }
-  }, [step, setStep]);
+  }, [step, setStep, navigate]);
 
   useEffect(() => {
     if (selectedEvents.length > 0) {

@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { maxStepLength, useSetStep, useStepData } from "state/stepState";
 import { useSetTitle } from "state/titleState";
@@ -17,11 +18,14 @@ const Step1 = () => {
   const step = useStepData();
   const setStep = useSetStep();
 
+  const navigate = useNavigate();
+
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
       setStep(step + 1);
+      navigate('/dynasties')
     }
-  }, [step, setStep]);
+  }, [step, setStep, navigate]);
 
   useEffect(() => {
     tg.MainButton.show();

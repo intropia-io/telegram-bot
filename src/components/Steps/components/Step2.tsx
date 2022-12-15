@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useDynastyData } from "state/dynastyState";
@@ -24,6 +25,7 @@ const Step2 = () => {
 
   const { tg } = useTelegram();
 
+  const navigate = useNavigate();
   const step = useStepData();
   const setStep = useSetStep();
 
@@ -31,14 +33,17 @@ const Step2 = () => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, dynasty: selectedDynasty }));
       setStep(step + 1);
+      navigate('/opportunities')
     }
-  }, [step, setStep, selectedDynasty, setForm]);
+  }, [step, setStep, selectedDynasty, setForm, navigate]);
+
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
+      navigate('/welcome')
     }
-  }, [step, setStep]);
+  }, [step, setStep, navigate]);
 
   useEffect(() => {
     if (selectedDynasty.length > 0) {

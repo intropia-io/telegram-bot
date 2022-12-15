@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { maxStepLength, useSetStep, useStepData } from "state/stepState";
 import { useSetForm, useFormData } from "state/formState";
@@ -9,6 +10,7 @@ import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
 import { ReffProgram } from "helper/enum";
+
 
 const Step5 = () => {
   const formData = useFormData();
@@ -26,18 +28,23 @@ const Step5 = () => {
   const setStep = useSetStep();
   const setAssistContainer = useSetAssistContainer();
 
+  const navigate = useNavigate();
+
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, reffProgram: reffProgram }));
       setStep(step + 1);
+      navigate('/done')
     }
-  }, [step, setStep, reffProgram, setForm]);
+  }, [step, setStep, reffProgram, setForm, navigate]);
+
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
+      navigate('/events')
     }
-  }, [step, setStep]);
+  }, [step, setStep, navigate]);
 
   useEffect(() => {
     tg.MainButton.setParams({

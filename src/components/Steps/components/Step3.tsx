@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useStepData, useSetStep, maxStepLength } from "state/stepState";
 import { useTypesData } from "state/typesState";
@@ -26,20 +27,25 @@ const Step3 = () => {
 
   const step = useStepData();
   const setStep = useSetStep();
+  const navigate = useNavigate();
 
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, questTypes: selectedQuests }));
 
       setStep(step + 1);
+
+      navigate('/events');
     }
-  }, [step, setStep, selectedQuests, setForm]);
+  }, [step, setStep, selectedQuests, setForm, navigate]);
+
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
     }
-  }, [step, setStep]);
+    navigate('/dynasties')
+  }, [step, setStep, navigate]);
 
   useEffect(() => {
     if (selectedQuests.length > 0) {
