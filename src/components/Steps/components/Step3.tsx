@@ -48,9 +48,9 @@ const Step3 = () => {
 
   useEffect(() => {
     if (step === 1) {
-      navigate('/');
+      navigate("/");
     }
-  }, [navigate, step])
+  }, [navigate, step]);
 
   useEffect(() => {
     if (selectedQuests.length > 0) {
@@ -74,6 +74,7 @@ const Step3 = () => {
   }, [nextStep, prevStep, tg]);
 
   useEffect(() => {
+    document.title = "tr3bot opportunities";
     setTitle("Opportunities");
     setAssistContainer({
       visible: true,

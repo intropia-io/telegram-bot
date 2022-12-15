@@ -46,9 +46,9 @@ const Step2 = () => {
 
   useEffect(() => {
     if (step === 1) {
-      navigate('/');
+      navigate("/");
     }
-  }, [navigate, step])
+  }, [navigate, step]);
 
   useEffect(() => {
     if (selectedDynasty.length > 0) {
@@ -63,6 +63,7 @@ const Step2 = () => {
   }, [formData.dynasty]);
 
   useEffect(() => {
+    document.title = "tr3bot dynasties";
     setTitle("Choose your dynasty");
     setAssistContainer({
       visible: true,

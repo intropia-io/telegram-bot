@@ -46,9 +46,9 @@ const Step4 = () => {
 
   useEffect(() => {
     if (step === 1) {
-      navigate('/');
+      navigate("/");
     }
-  }, [navigate, step])
+  }, [navigate, step]);
 
   useEffect(() => {
     if (selectedEvents.length > 0) {
@@ -74,6 +74,7 @@ const Step4 = () => {
   }, [nextStep, prevStep, tg]);
 
   useEffect(() => {
+    document.title = "tr3bot events";
     setTitle("Events");
     setAssistContainer({
       visible: true,

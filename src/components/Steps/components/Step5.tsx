@@ -46,9 +46,9 @@ const Step5 = () => {
 
   useEffect(() => {
     if (step === 1) {
-      navigate('/');
+      navigate("/");
     }
-  }, [navigate, step])
+  }, [navigate, step]);
 
   useEffect(() => {
     tg.MainButton.setParams({
@@ -67,6 +67,7 @@ const Step5 = () => {
   }, [nextStep, prevStep, tg]);
 
   useEffect(() => {
+    document.title = "tr3bot referral";
     setTitle("Referral recruitment");
     setAssistContainer({
       visible: true,

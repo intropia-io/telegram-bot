@@ -110,15 +110,16 @@ const Step6 = () => {
 
   useEffect(() => {
     if (step === 1) {
-      navigate('/');
+      navigate("/");
     }
-  }, [navigate, step])
+  }, [navigate, step]);
 
   useEffect(() => {
     setForm((prev) => ({ ...prev, updateFrequency: updateFrequency }));
   }, [updateFrequency, setForm]);
 
   useEffect(() => {
+    document.title = "tr3bot done";
     setTitle("Great job! You're all set.");
     tg.MainButton.setParams({
       text: "SAVE",
