@@ -11,7 +11,6 @@ import Checkbox from "components/Checkbox/Checkbox";
 import { useTelegram } from "hooks/useTelegram";
 import { ReffProgram } from "helper/enum";
 
-
 const Step5 = () => {
   const formData = useFormData();
   const setForm = useSetForm();
@@ -34,15 +33,14 @@ const Step5 = () => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, reffProgram: reffProgram }));
       setStep(step + 1);
-      navigate('/done')
+      navigate("/done");
     }
   }, [step, setStep, reffProgram, setForm, navigate]);
-
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
-      navigate('/events')
+      navigate("/events");
     }
   }, [step, setStep, navigate]);
 

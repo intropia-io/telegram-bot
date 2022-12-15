@@ -35,16 +35,15 @@ const Step3 = () => {
 
       setStep(step + 1);
 
-      navigate('/events');
+      navigate("/events");
     }
   }, [step, setStep, selectedQuests, setForm, navigate]);
-
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
     }
-    navigate('/dynasties')
+    navigate("/dynasties");
   }, [step, setStep, navigate]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate  } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import Step1 from "components/Steps/components/Step1";
 import Step2 from "components/Steps/components/Step2";

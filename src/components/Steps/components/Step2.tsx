@@ -33,15 +33,14 @@ const Step2 = () => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, dynasty: selectedDynasty }));
       setStep(step + 1);
-      navigate('/opportunities')
+      navigate("/opportunities");
     }
   }, [step, setStep, selectedDynasty, setForm, navigate]);
-
 
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
-      navigate('/welcome')
+      navigate("/welcome");
     }
   }, [step, setStep, navigate]);
 

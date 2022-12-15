@@ -39,7 +39,6 @@ const Step6 = () => {
   const step = useStepData();
   const setStep = useSetStep();
 
-
   const finish = useCallback(async () => {
     if (user && user.id && !disabled) {
       setDisabled(true);
@@ -105,7 +104,7 @@ const Step6 = () => {
   const prevStep = useCallback(() => {
     if (step > 1) {
       setStep(step - 1);
-      navigate('/referral')
+      navigate("/referral");
     }
   }, [navigate, step, setStep]);
 

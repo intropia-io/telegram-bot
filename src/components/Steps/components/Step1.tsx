@@ -23,7 +23,7 @@ const Step1 = () => {
   const nextStep = useCallback(() => {
     if (step < maxStepLength) {
       setStep(step + 1);
-      navigate('/dynasties')
+      navigate("/dynasties");
     }
   }, [step, setStep, navigate]);
 
