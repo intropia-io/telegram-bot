@@ -28,7 +28,7 @@ const StepRouter = () => {
   useEffect(() => {
     if (!user?.id) return;
 
-    fetch(`${process.env.REACT_APP_REST_URL}/${user?.id}`, {
+    fetch(`${process.env.REACT_APP_REST_URL}/api/subscription/${user?.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
