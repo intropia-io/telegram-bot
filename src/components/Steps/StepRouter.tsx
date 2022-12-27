@@ -28,7 +28,7 @@ const StepRouter = () => {
   useEffect(() => {
     if (!user?.id) return;
 
-    fetch(`${process.env.REACT_APP_TG_SERVER}/${user?.id}`, {
+    fetch(`${process.env.REACT_APP_REST_URL}/${user?.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const StepRouter = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_TG_SERVER}/api/type`).then((res) => {
+    axios.get(`${process.env.REACT_APP_REST_URL}/api/type`).then((res) => {
       const types = res.data;
       const questTypes: Type[] = [];
       const eventsTypes: Type[] = [];
@@ -91,7 +91,7 @@ const StepRouter = () => {
   }, []);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_TG_SERVER}/api/dynasty`).then((res) => {
+    axios.get(`${process.env.REACT_APP_REST_URL}/api/dynasty`).then((res) => {
       const dynasty = res.data;
       setDynasty(dynasty);
     });
