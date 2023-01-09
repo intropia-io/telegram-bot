@@ -67,7 +67,7 @@ const Step6 = () => {
         .filter((eventType) => formData.eventTypes.includes(eventType.id))
         .map((eventType) => eventType.name);
 
-      await fetch("https://rest.tr3butor.io/api/subscription/create", {
+      await fetch(`${process.env.REACT_APP_REST_URL}/api/subscription/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const Step6 = () => {
       })
         .then(
           async () =>
-            await fetch("https://tgserver.tr3butor.io/send_feed", {
+            await fetch(`${process.env.REACT_APP_TG_SERVER}/send_feed`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
