@@ -1,0 +1,23 @@
+.skeleton-wrapper {
+  background-color: initial;
+  border: 1px solid #292e45;
+  border-radius: 10px;
+  height: auto;
+  outline: none;
+  display: flex;
+  padding: 20px;
+  width: 100%;
+  min-height: 80px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+
+.skeleton-wrapper > div:nth-child(1) {
+  margin-right: 4px;
+}
+
+.skeleton-wrapper > div:nth-child(2) {
+  margin-right: auto;
+}

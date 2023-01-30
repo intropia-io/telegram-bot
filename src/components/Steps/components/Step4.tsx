@@ -10,6 +10,7 @@ import { useSetAssistContainer } from "state/assistContainerState";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
+import SkeletonCardSteck from "components/Skeleton/SkeletonCardSteck";
 
 const Step4 = () => {
   const formData = useFormData();
@@ -97,16 +98,23 @@ const Step4 = () => {
 
   return (
     <>
-      {typesData.eventsTypes.map((event, index) => (
-        <Checkbox
-          key={index}
-          name={event.id}
-          label={event.name}
-          hint={event.description}
-          checked={selectedEvents.includes(event.id)}
-          onDataChange={handleChange}
-        />
-      ))}
+      {typesData.eventsTypes.length > 0 ? (
+        typesData.eventsTypes.map((event, index) => (
+          <Checkbox
+            key={index}
+            name={event.id}
+            label={event.name}
+            hint={event.description}
+            checked={selectedEvents.includes(event.id)}
+            onDataChange={handleChange}
+          />
+        ))
+      ) : (
+        <>
+          <SkeletonCardSteck />
+          <SkeletonCardSteck />
+        </>
+      )}
     </>
   );
 };
