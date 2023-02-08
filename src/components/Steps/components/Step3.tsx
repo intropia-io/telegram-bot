@@ -75,7 +75,7 @@ const Step3 = () => {
   }, [nextStep, prevStep, tg]);
 
   useEffect(() => {
-    document.title = "tr3bot opportunities";
+    document.title = "intropia bot opportunities";
     setTitle("Opportunities");
     setAssistContainer({
       visible: true,

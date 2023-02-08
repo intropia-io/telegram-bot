@@ -41,7 +41,7 @@ const Step1 = () => {
   }, [tg]);
 
   useEffect(() => {
-    document.title = "tr3bot welcome";
+    document.title = "intropia bot welcome";
     setTitle("Welcome");
     setAssistContainer((prev) => ({ ...prev, visible: false }));
     tg.BackButton.hide();

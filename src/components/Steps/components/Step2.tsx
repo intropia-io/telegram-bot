@@ -64,7 +64,7 @@ const Step2 = () => {
   }, [formData.dynasty]);
 
   useEffect(() => {
-    document.title = "tr3bot dynasties";
+    document.title = "intropia bot dynasties";
     setTitle("Choose your dynasty");
     setAssistContainer({
       visible: true,

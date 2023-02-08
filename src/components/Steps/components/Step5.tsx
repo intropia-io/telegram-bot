@@ -119,7 +119,7 @@ const Step5 = () => {
   }, [updateFrequency, setForm]);
 
   useEffect(() => {
-    document.title = "tr3bot done";
+    document.title = "intropia bot done";
     setTitle("Great job! You're all set.");
     tg.MainButton.setParams({
       text: "SAVE",
