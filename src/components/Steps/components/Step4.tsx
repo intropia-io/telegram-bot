@@ -34,7 +34,7 @@ const Step4 = () => {
     if (step < maxStepLength) {
       setForm((prev) => ({ ...prev, eventTypes: selectedEvents }));
       setStep(step + 1);
-      navigate("/referral");
+      navigate("/done");
     }
   }, [step, setStep, setForm, selectedEvents, navigate]);
 
