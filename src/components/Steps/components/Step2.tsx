@@ -10,6 +10,7 @@ import { useSetAssistContainer } from "state/assistContainerState";
 
 import { useTelegram } from "hooks/useTelegram";
 import Checkbox from "components/Checkbox/Checkbox";
+import SkeletonCardSteck from "components/Skeleton/SkeletonCardSteck";
 
 const Step2 = () => {
   const formData = useFormData();
@@ -63,7 +64,7 @@ const Step2 = () => {
   }, [formData.dynasty]);
 
   useEffect(() => {
-    document.title = "tr3bot dynasties";
+    document.title = "intropia bot dynasties";
     setTitle("Choose your dynasty");
     setAssistContainer({
       visible: true,
@@ -104,21 +105,26 @@ const Step2 = () => {
     [selectedDynasty]
   );
 
-  if (!dynastyData) return null;
-
   return (
     <>
-      {dynastyData?.map((dynasty, index) => (
-        <Checkbox
-          key={index}
-          name={dynasty.id}
-          icon={dynasty.avatar}
-          label={dynasty.name}
-          hint={dynasty.description}
-          checked={selectedDynasty.includes(dynasty.id)}
-          onDataChange={handleChange}
-        />
-      ))}
+      {dynastyData.length > 0 ? (
+        dynastyData?.map((dynasty, index) => (
+          <Checkbox
+            key={index}
+            name={dynasty.id}
+            icon={dynasty.avatar}
+            label={dynasty.name}
+            hint={dynasty.description}
+            checked={selectedDynasty.includes(dynasty.id)}
+            onDataChange={handleChange}
+          />
+        ))
+      ) : (
+        <>
+          <SkeletonCardSteck />
+          <SkeletonCardSteck />
+        </>
+      )}
     </>
   );
 };

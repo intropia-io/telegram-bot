@@ -10,6 +10,7 @@ import { useSetAssistContainer } from "state/assistContainerState";
 import Checkbox from "components/Checkbox/Checkbox";
 
 import { useTelegram } from "hooks/useTelegram";
+import SkeletonCardSteck from "components/Skeleton/SkeletonCardSteck";
 
 const Step3 = () => {
   const formData = useFormData();
@@ -74,7 +75,7 @@ const Step3 = () => {
   }, [nextStep, prevStep, tg]);
 
   useEffect(() => {
-    document.title = "tr3bot opportunities";
+    document.title = "intropia bot opportunities";
     setTitle("Opportunities");
     setAssistContainer({
       visible: true,
@@ -95,16 +96,20 @@ const Step3 = () => {
 
   return (
     <>
-      {typesData.questTypes.map((type, index) => (
-        <Checkbox
-          key={index}
-          name={type.id}
-          label={type.name}
-          hint={type.description}
-          checked={selectedQuests.includes(type.id)}
-          onDataChange={handleChange}
-        />
-      ))}
+      {typesData.questTypes.length > 0 ? (
+        typesData.questTypes.map((type, index) => (
+          <Checkbox
+            key={index}
+            name={type.id}
+            label={type.name}
+            hint={type.description}
+            checked={selectedQuests.includes(type.id)}
+            onDataChange={handleChange}
+          />
+        ))
+      ) : (
+        <SkeletonCardSteck />
+      )}
     </>
   );
 };
